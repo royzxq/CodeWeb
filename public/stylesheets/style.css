@@ -1,8 +1,197 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*
+Theme Name: Twenty Twelve-Child
+Theme URI: http://ldcsites.com/twentytwelve-child
+Author: Samara Iodice of lynda.com
+Author URI: http://ldcsites.com
+Description: Tweny Twelve Child
+Template: twentytwelve
+Version: 1.0
+
+/* =Imports styles from the parent theme
+-------------------------------------------------------------- */
+@import url('tt-style.css');
+
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+
+/* =Hide titles on pages via CSS instead of removing code from the content-page.php file -------------------------------------------------------------- */
+
+.page .entry-header { display: none; }
+
+
+/* =Remove extra space where titles once were.
+-------------------------------------------------------------- */
+/* Page structure */
+.site {
+	padding: 24px 0;
+	padding: 0 1.714285714rem;
+	background-color: #fff;
+}
+.site-content {
+	margin: 24px 0 0;
+	margin: 1rem 0 0;
+}
+.widget-area {
+	margin: 24px 0 0;
+	margin: 1.714285714rem 0 0;
 }
 
-a {
-  color: #00B7FF;
+/* Header */
+.site-header {
+	padding: 24px 0;
+	padding: 1.71429rem 0 0 0;
 }
+.site-header h1,
+.site-header h2 {
+	text-align: center;
+}
+.site-header h1 a,
+.site-header h2 a {
+	color: #515151;
+	display: inline-block;
+	text-decoration: none;
+}
+.site-header h1 a:hover,
+.site-header h2 a:hover {
+	color: #21759b;
+}
+.site-header h1 {
+	font-size: 24px;
+	font-size: 1.714285714rem;
+	line-height: 1.285714286;
+	margin-bottom: 14px;
+	margin-bottom: 1rem;
+color: #602e8b;
+}
+.site-header h2 {
+	font-weight: normal;
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	line-height: 1.846153846;
+	color: #757575;
+}
+.header-image {
+	margin-top: 24px;
+	margin-top: 1.714285714rem;
+}
+
+
+/* =Change colors-- */
+
+.entry-content h1,
+.comment-content h1 {
+	font-size: 21px;
+	font-size: 1.5rem;
+	line-height: 1.5;
+        color:  #602e8b;
+}
+
+/* Change menu drop down hover color. This is from the section called "Minimum width of 600 pixels", not the main navigation menu. */
+
+	.main-navigation li ul li a:hover {
+		background: #e3e3e3;
+		color: #602e8b;
+	}
+
+/* Change hover states from the section called "Body, links, basics" */
+
+a:link {
+	outline: none;
+	color: #21759b;
+}
+a:visited {
+	color: #a8add7;
+}
+
+a:hover {
+	color: #a8add7; 
+text-decoration: underline;
+}
+
+a:active {
+color: #a8add7; 
+}
+
+
+/* Change hover states from the section called "Main content and comment content" */
+
+.entry-header .comments-link {
+	margin-top: 24px;
+	margin-top: 1.714285714rem;
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	line-height: 1.846153846;
+	color: #21759b;
+}
+.comments-link a,
+.entry-meta a {
+	color: #21759b;
+}
+.comments-link a:visited,
+.entry-meta a:visited {
+	color: #a8add7;
+}
+.comments-link a:hover,
+.entry-meta a:hover {
+	color: #a8add7;
+}
+comments-link a:active,
+.entry-meta a:active {
+	color: #a8add7;
+}
+
+/* Could not get visited state to change to the desired color until I edited this section from "Main content and comment content" */
+
+.entry-content a:visited,
+.comment-content a:visited {
+	color: #a8add7;
+}
+
+/* Remove automatic hyphenation */
+.site-content article { word-wrap: normal; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; }
+.widget-area .widget { word-wrap: normal; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; }
+
+#supersized{z-index:-1 !important;} 
+
+.site-title,
+.site-description {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px); /* IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}
+body.custom-background { background-color: #c2c5d6; }
+
+#pgc-218-0-0 { width:34.535% } 
+#pgc-218-0-1 { width:65.465% } 
+#pg-218-0 , .panel-grid-cell .panel { margin-bottom: 30px } 
+#pg-218-0 .panel-grid-cell { float:left } 
+.panel-grid-cell .panel:last-child { margin-bottom: 0 !important } 
+.panel-grid { margin: 0 -15px 0 -15px } 
+.panel-grid-cell { padding: 0 15px 0 15px } 
+@media (max-width:780px) { 
+	#pg-218-0 .panel-grid-cell , #pg-218-1 .panel-grid-cell { float:none } 
+    #pg-218-0 .panel-grid-cell , #pg-218-1 .panel-grid-cell { width:auto } 
+    #pgc-218-0-0 { margin-bottom:30px } 
+    .panel-grid { margin-left: 0 !important; margin-right: 0 !important; } 
+    .panel-grid-cell { padding: 0 !important; }  
+}
+
+form label {
+	display:inline-block;
+	width:100px;
+}
+
+.form-group {
+	margin-bottom:10px;
+}
+
+.form-submit {
+	margin-top:20px;
+	text-align:left;
+}
+
+.margin-top-30 {
+	margin-top:30px;
+}
+

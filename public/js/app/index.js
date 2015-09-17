@@ -1,14 +1,18 @@
 
 (function () {
 	angular.module('app').controller('ListController', ListController);
-	ListController.$inject = ['$http'];
+	ListController.$inject = ['$http', '$location','$window'];
 
-	function ListController($http){
+	function ListController($http, $location,$window){
 		var vm = this;
-		console.log(__dirname);
 		$http.get('/js/items.json')
 		.then(function(response){
 			vm.probList = response.data;
 		});
+		
+		vm.goto = function(url){
+			console.log(url);
+			$window.location.href=url;
+		}
 	}
 }());

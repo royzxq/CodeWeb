@@ -9,9 +9,11 @@
 		<tr ng-repeat = "prob in vm.probList | orderBy:'title'">
 			<td ng-bind="prob.title"></td>
 			<td ng-bind="prob.difficulty"></td>
-			<a ng-href="prob.link">
-				<td ng-bind="prob.link"></td>
-			</a>
+			
+				<td  >
+					<a ng-bind="prob.link" ng-click='vm.goto(prob.link)' href></a>
+				</td>
+			
 		</tr>
 	</table>
 </div>

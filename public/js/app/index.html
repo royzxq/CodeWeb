@@ -1,13 +1,15 @@
 <div>
 	<strong ng-show="!vm.probList">Loading...</strong>
-	<table>
-		<tr>
+	<table >
+		<tr ng-show="vm.probList">
 			<td>title</td>
 			<td>Difficult</td>
 			<td>Link</td>
 		</tr>
 		<tr ng-repeat = "prob in vm.probList | orderBy:'title'">
-			<td ng-bind="prob.title"></td>
+			<td >
+				<a ng-bind="prob.title" ng-click='vm.selectProb(prob)' href></a>
+			</td>
 			<td ng-bind="prob.difficulty"></td>
 			
 				<td  >
@@ -17,3 +19,11 @@
 		</tr>
 	</table>
 </div>
+
+<script type="text/ng-template" id='probContent.html'>
+	<h1 ng-bind="vm.prob.title"></h1>
+	<div ng-repeat="des in vm.prob.content">
+		<strong ng-bind="des"></strong>
+	</div>
+	<button ng-click='vm.cancel()'>Cancel</button>
+</script>

@@ -5,7 +5,8 @@ var probSchema = new Schema({
     title: String,
     link: String,
     content: [],
-    difficulty: String
+    difficulty: String,
+    source: String
 }, { collection : 'question_collection' });
 
 var Prob = mongoose.model("Prob", probSchema);

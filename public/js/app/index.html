@@ -5,6 +5,7 @@
 			<td>title</td>
 			<td>Difficult</td>
 			<td>Link</td>
+			<td>Source</td>
 		</tr>
 		<tr ng-repeat = "prob in vm.probList | orderBy:'title'">
 			<td >
@@ -12,9 +13,11 @@
 			</td>
 			<td ng-bind="prob.difficulty"></td>
 			
-				<td  >
-					<a ng-bind="prob.link" ng-click='vm.goto(prob.link)' href></a>
-				</td>
+			<td  >
+				<a ng-bind="prob.link" ng-click='vm.goto(prob.link)' href></a>
+			</td>
+
+			<td ng-bind="prob.source"></td>
 			
 		</tr>
 	</table>

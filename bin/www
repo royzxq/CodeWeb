@@ -7,10 +7,15 @@
 var app = require('../app');
 var debug = require('debug')('CodeWeb:server');
 var http = require('http');
+var pythonShell = require("python-shell");
+var PeriodicTask = require('periodic-task');
 
+
+var config = require("../config");
 /**
  * Get port from environment and store in Express.
  */
+
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
@@ -24,6 +29,9 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+var crawler = new PeriodicTask(config.delay, runCrawler);
+crawler.run();
 
 server.listen(port);
 server.on('error', onError);
@@ -88,4 +96,14 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
   console.log("Listening on " + bind);
+}
+
+function runCrawler(){
+  pythonShell.run('../public/python/leetSpider/start.py',function(err){
+    if (err) {
+      throw err;
+    }
+    var now = new Date();
+    console.log('finish crawling at Date:', now.getDate(), ' Time:',now.getHours(),":", now.getMinutes());
+  })
 }

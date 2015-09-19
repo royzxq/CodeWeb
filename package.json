@@ -14,6 +14,8 @@
     "jade": "~1.11.0",
     "mongoose": "^4.1.7",
     "morgan": "~1.6.1",
+    "periodic-task": "^0.1.1",
+    "python-shell": "^0.1.0",
     "request": "^2.62.0"
   }
 }

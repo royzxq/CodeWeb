@@ -6,15 +6,10 @@
 
 	function ListController($http,$window,ngDialog,$scope){
 		var vm = this;
-		$http.get('/js/leetcode.json')
-		.then(function(leet){
-			$http.get('/js/lintcode.json').then(function(lint){
-				angular.merge(lint.data,leet.data);
-				vm.probList = lint.data;
-				console.log(vm.probList.length);
-			})
-			
-		});
+		$http.get('/probs')
+		.then(function(response){
+			vm.probList = response.data;
+		})
 		
 		vm.goto = function(url){
 			console.log(url);

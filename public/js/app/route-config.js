@@ -4,7 +4,7 @@
 	config.$inject = ["$routeProvider"];
 	function config($routeProvider){
 		$routeProvider
-		.when('/:probLink',{
+		.when('/:probTitle',{
 			templateUrl: '/js/app/prob/prob.html',
 			controller: 'ProbController',
 			controllerAs: 'vm'

@@ -1,9 +1,9 @@
 (function(){
 	angular.module('app').controller('ProbController', ProbController);
 
-	ProbController.$inject = ['$routeParams','$location'];
+	ProbController.$inject = ['$routeParams','$http'];
 
-	function ProbController($routeParams,$location){
-		return $location.url($routeParams.probLink);
+	function ProbController($routeParams){
+		vm = this;
 	}
 }());

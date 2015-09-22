@@ -1,13 +1,34 @@
 <div>
 	<strong ng-show="!vm.probList">Loading...</strong>
+	<button ng-show = "vm.probList" ng-click='vm.goPreviousPage()' class='ngdialog-theme-default'>Prev</button>
+	<span ng-show = "vm.probList">
+		<strong>{{vm.page+1}} / {{vm.probListArray.length}}</strong>
+	</span>
+	<button ng-show = "vm.probList" ng-click='vm.goNextPage()' class='ngdialog-theme-default'>Next</button>
+	<span ng-show = "vm.probList">Items to display: </span>
+	<select ng-show = "vm.probList" ng-model='vm.select' ng-change="vm.rePage()">
+		<option value="10" ng-click='vm.rePage()'>10</option>
+		<option value="50" ng-click='vm.rePage()'>50</option>
+		<option value="100" ng-click='vm.rePage()' >100</option>
+	</select>
 	<table >
 		<tr ng-show="vm.probList">
-			<td>title</td>
-			<td>Difficult</td>
-			<td>Link</td>
-			<td>Source</td>
+			
+			<td >
+				<a href="" ng-click="vm.order('title')">Title</a>
+			</td>
+			<td >
+				<a href="" ng-click="vm.order('difficulty')">Difficulty</a>
+			</td>
+			<td >
+				<a href="" ng-click="vm.order('link')">Link</a>
+			</td>
+			<td >
+				<a href="" ng-click="vm.order('source')">Source</a>
+			</td>
+			
 		</tr>
-		<tr ng-repeat = "prob in vm.probList | orderBy:'title'">
+		<tr ng-repeat = "prob in vm.probList | orderBy:vm.predicate:vm.reverse">
 			<td >
 				<a ng-bind="prob.title" ng-click='vm.selectProb(prob)' href></a>
 			</td>
@@ -28,5 +49,6 @@
 	<div ng-repeat="des in vm.prob.content">
 		<strong ng-bind="des"></strong>
 	</div>
+	<button ng-click="vm.goto(vm.prob.link)">Link</button>
 	<button ng-click='vm.cancel()'>Cancel</button>
 </script>

@@ -1,0 +1,3 @@
+npm start
+python ./public/python/leetSpider/start.py
+

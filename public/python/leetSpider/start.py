@@ -1,4 +1,4 @@
-from twisted.internet import reactor
+from twisted.internet import reactor, defer
 import scrapy
 from scrapy.crawler import CrawlerRunner
 from scrapy.utils.log import configure_logging
@@ -9,8 +9,11 @@ from leetSpider.spiders.lintcode import LintcodeSpider
 configure_logging({'LOG_FORMAT': '%(levelname)s: %(message)s'})
 runner = CrawlerRunner()
 
-runner.crawl(LeetcodeSpider)
-runner.crawl(LintcodeSpider)
-d = runner.join()
-d.addBoth(lambda _: reactor.stop())
-reactor.run() 
+@defer.inlineCallbacks
+def crawl():
+	yield runner.crawl(LeetcodeSpider)
+	yield runner.crawl(LintcodeSpider)
+	reactor.stop()
+
+crawl()
+reactor.run()

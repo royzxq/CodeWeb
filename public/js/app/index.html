@@ -47,7 +47,7 @@
 <script type="text/ng-template" id='probContent.html'>
 	<h1 ng-bind="vm.prob.title"></h1>
 	<div ng-repeat="des in vm.prob.content">
-		<strong ng-bind="des"></strong>
+		<strong ng-bind-html="des"></strong>
 	</div>
 	<button ng-click="vm.goto(vm.prob.link)">Link</button>
 	<button ng-click='vm.cancel()'>Cancel</button>

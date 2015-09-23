@@ -7,8 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('CodeWeb:server');
 var http = require('http');
-var pythonShell = require("python-shell");
-var PeriodicTask = require('periodic-task');
 
 
 var config = require("../config");
@@ -98,12 +96,4 @@ function onListening() {
   console.log("Listening on " + bind);
 }
 
-function runCrawler(){
-  pythonShell.run('../public/python/leetSpider/start.py',function(err){
-    if (err) {
-      throw err;
-    }
-    var now = new Date();
-    console.log('finish crawling at Date:', now.getDate(), ' Time:',now.getHours(),":", now.getMinutes());
-  })
-}
+

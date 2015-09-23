@@ -2,7 +2,7 @@
 (function () {
 	'use strict';
 	angular.module('app').controller('ListController', ListController);
-	ListController.$inject = ['$http','$window','ngDialog','$scope'];
+	ListController.$inject = ['$http','$window','ngDialog','$scope','$sce'];
 
 	function chunk(arr, size){
 		var newArr = [];
@@ -11,7 +11,7 @@
 		}
 		return newArr;
 	}
-	function ListController($http,$window,ngDialog,$scope){
+	function ListController($http,$window,ngDialog,$scope,$sce){
 		var vm = this;
 		vm.page = 0;
 		vm.select = 50;
@@ -34,6 +34,11 @@
 		
 		vm.selectProb = function(prob){
 			vm.prob = prob;
+			for (var i = 0 ; i < vm.prob.content.length; i++){
+				vm.prob.content[i] = $sce.trustAsHtml(vm.prob.content[i])
+				// vm.des.push(tmp)
+			}
+			// vm.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml(vm.prob.content)
 			ngDialog.open({
 				template:'probContent.html',
 				className: 'ngdialog-theme-default',

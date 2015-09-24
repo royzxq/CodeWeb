@@ -1,0 +1,26 @@
+
+<div class="widget">
+  <form name="create-user-form" id="create-user-form" method="post">
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input type="text" id="firstName" name="firstName" required value="{{input.firstName}}" />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input type="text" id="lastName" name="lastName" required value="{{input.lastName}}" />
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required value="{{input.email}}" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="off" required />
+    </div>
+    <div class="form-submit">
+      <input type="submit" value="Create my account" />
+    </div>
+    <span style="color:red">{{error}}</span>
+  </form>
+</div>

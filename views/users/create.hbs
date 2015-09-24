@@ -1,6 +1,6 @@
 
 <div class="widget">
-  <form name="create-user-form" id="create-user-form" method="post">
+  <form name="create-user-form" id="create-user-form" method="post" novalidate>
     <div class="form-group">
       <label for="firstName">First name</label>
       <input type="text" id="firstName" name="firstName" required value="{{input.firstName}}" />
@@ -23,4 +23,5 @@
     </div>
     <span style="color:red">{{error}}</span>
   </form>
+  <a href='/users/login'>Login</a>
 </div>

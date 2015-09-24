@@ -8,8 +8,11 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   // var url = "../items.json";
   //console.log(url);
-  
-  res.render('index');
+  var vm = {
+    title : "OJ Integration",
+    firstName: req.user ? req.user.firstName : null
+  }
+  res.render('index', vm);
   // request(url, function(err, resp, body){
   //     if(!err){
   //         res.json(body);
@@ -24,7 +27,7 @@ router.get('/probs', function(req, res, next) {
       if (err) {
         return res.status(500).json({error:"Failed"});
       }
-      console.log(probs);
+      // console.log(probs);
       res.json(probs);
     })
 })

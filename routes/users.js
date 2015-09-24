@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var userService = require('../service/user-service');
-
+var config = require("../config");
 
 
 /* GET users listing. */
@@ -20,18 +20,27 @@ router.get('/create', function(req, res, next){
 router.post('/create', function(req, res, next){
 	userService.addUser(req.body, function(err){
 		if (err) {
-			console.log(err);
+			// console.log(err);
+			var error = []
+			for(var x in err.errors){
+				error.push(err.errors[x].message);
+			}
+			// console.log(error);
 			var vm = {
 				title: "create an account",
-				err: err
+				error: error
 			};
-			delete req.body.password;
+			// delete req.body.password;
 			return res.render('users/create',vm);
 		}
+		req.login(req.body,function(err){
+			if (err) {
+				res.redirect('users/create');
+			}
+			res.redirect('/');
+		});
 	});
-	req.login(req.body,function(err){
-		res.redirect('/');
-	});
+	
 });
 
 router.get('/login', function(req, res, next){
@@ -39,15 +48,19 @@ router.get('/login', function(req, res, next){
 })
 
 router.post('/login', function(req, res, next){
+	if(req.body.rememberMe){
+		req.session.cookie.maxAge = config.cookieMaxAge;
+	}
 	next();	
 }, passport.authenticate('local',{
 	failureRedirect: 'login', 
     successRedirect:'/',
-    // failureFlash: 'Invalid credentials'
+    failureFlash: {error:'Invalid credentials'}
 }));
 
 router.get('/logout', function(req, res, next){
 	req.logout();
+	req.session.destroy();
 	res.redirect('/');
 })
 

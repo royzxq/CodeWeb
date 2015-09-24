@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>OJ Integrating Website</title>
+        <title>OJ Integrating Website {{#if title}} - {{title}}{{/if}}</title>
         <meta name="description" content="No matter what you're craving, Restaurant to Room has you covered. Our fast and friendly delivery service brings you hot, fresh food, from a diverse choice of local restaurants." />
         <link rel="stylesheet" href="/stylesheets/wp-backgrounds.css" type='text/css' media='all' />
         <link rel='stylesheet' href="/stylesheets/mjCont.css" type='text/css' media='all' />
@@ -18,7 +18,12 @@
         <div id="page" class="hfeed site">
 	        <header id="masthead" class="site-header" role="banner">		        
             </header>
-            
+            {{#if firstName}}
+            <div id="greeting" style="float:right">
+              <strong>Hi, {{firstName}}!</strong>
+              <a href="/users/logout">Log out</a>
+            </div>
+            {{/if}}
 	        <div id="main" class="wrapper">
 	            <div id="primary" class="site-content">
 		            <div id="content" role="main">

@@ -22,6 +22,11 @@
             <div id="greeting" style="float:right">
               <strong>Hi, {{firstName}}!</strong>
               <a href="/users/logout">Log out</a>
+            </div >
+            {{else}}
+            <div style="float:right">
+                <a href="/users/create">Create an Account</a> | 
+                <a href="/users/login">Login</a>
             </div>
             {{/if}}
 	        <div id="main" class="wrapper">

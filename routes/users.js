@@ -69,4 +69,28 @@ router.get('/logout', function(req, res, next){
 	res.redirect('/');
 })
 
+router.get('/getUser', function(req, res, next){
+	if(req.user){
+		res.json(req.user);
+	}
+	else{
+		res.json(null);
+	}
+	// else{
+	// 	res.redirect('users/login');
+	// }
+})
+
+router.post("/mark", function(req, res, next){
+	if (req.body.user && req.body.prob) {
+		// console.log(req.body.user.email);
+		// console.log(req.body.prob.title);
+		userService.updateQuestions(req.body.user._id, req.body.prob, function(err){
+			if (err) {
+				console.log(err);
+				res.status(500).json(err);
+			}
+		})
+	}
+});
 module.exports = router;

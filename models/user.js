@@ -11,7 +11,8 @@ var userSchema = new Schema({
 	lastName: {type:String, required: 'Please enter your last name'},
 	email: {type:String, required: 'Please enter your email'},
 	password: {type:String, required: 'Please enter your password'},
-	created: {type: Date, default: Date.now}
+	created: {type: Date, default: Date.now},
+  questions: {}
 }, {collection: "user"});
 
 

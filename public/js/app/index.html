@@ -29,6 +29,10 @@
 			<td >
 				<a href="" ng-click="vm.order('source')">Source</a>
 			</td>
+
+			<td ng-show="vm.user">
+				<a href="" ng-click="vm.order('user')">Finished</a>
+			</td>
 			
 		</tr>
 		<tr ng-repeat = "prob in vm.probList | orderBy:vm.predicate:vm.reverse">
@@ -42,6 +46,8 @@
 			</td>
 
 			<td ng-bind="prob.source"></td>
+
+			<td ng-show='vm.user' ng-bind="vm.user.questions[prob.title]"></td>
 			
 		</tr>
 	</table>
@@ -49,9 +55,15 @@
 
 <script type="text/ng-template" id='probContent.html'>
 	<h1 ng-bind="vm.prob.title"></h1>
-	<div ng-repeat="des in vm.prob.content">
+	<div ng-repeat="des in vm.prob.contents">
 		<strong ng-bind-html="des"></strong>
 	</div>
 	<button ng-click="vm.goto(vm.prob.link)">Link</button>
+	
 	<button ng-click='vm.cancel()'>Cancel</button>
+
+	<div ng-show="vm.user" style="float:right">
+		<button ng-show='vm.user.questions[vm.prob.title]' ng-click="vm.marked(vm.prob)">UnFinished</button>
+		<button ng-show='!vm.user.questions[vm.prob.title]' ng-click="vm.marked(vm.prob)">Finished</button>
+	<div>
 </script>

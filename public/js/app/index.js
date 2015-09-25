@@ -22,6 +22,12 @@
 			vm.probListArray =  chunk(vm.data, vm.select);
 			vm.probList = vm.probListArray[vm.page];
 		})
+
+		$http.get('/users/getUser')
+		.then(function(response){
+			// console.log(response.data);
+			vm.user = response.data;
+		})
 		
 		vm.goto = function(url){
 			console.log(url);
@@ -34,8 +40,9 @@
 		
 		vm.selectProb = function(prob){
 			vm.prob = prob;
+			vm.prob.contents = []
 			for (var i = 0 ; i < vm.prob.content.length; i++){
-				vm.prob.content[i] = $sce.trustAsHtml(vm.prob.content[i])
+				vm.prob.contents[i] = $sce.trustAsHtml(vm.prob.content[i])
 				// vm.des.push(tmp)
 			}
 			// vm.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml(vm.prob.content)
@@ -74,5 +81,12 @@
 			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
 			vm.probList = vm.probListArray[vm.page];
 		}
+
+		vm.marked = function(prob){
+			vm.user.questions[prob.title] = !vm.user.questions[prob.title];
+			$http.post('/users/mark',{user: vm.user, prob: vm.user.questions}).then(function(err){
+			});
+		}
+
 	}
 }());

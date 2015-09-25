@@ -44,7 +44,12 @@ router.post('/create', function(req, res, next){
 });
 
 router.get('/login', function(req, res, next){
-	res.render('users/login');
+	var vm = {
+	    title : "OJ Integration",
+	    firstName: req.user ? req.user.firstName : null,
+	    error : req.flash('error')
+	  }
+	res.render('users/login', vm);
 })
 
 router.post('/login', function(req, res, next){
@@ -55,7 +60,7 @@ router.post('/login', function(req, res, next){
 }, passport.authenticate('local',{
 	failureRedirect: 'login', 
     successRedirect:'/',
-    failureFlash: 'Invalid credentials'
+    failureFlash: 'Wrong username or password'
 }));
 
 router.get('/logout', function(req, res, next){

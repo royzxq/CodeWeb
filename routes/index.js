@@ -10,7 +10,8 @@ router.get('/', function(req, res, next) {
   //console.log(url);
   var vm = {
     title : "OJ Integration",
-    firstName: req.user ? req.user.firstName : null
+    firstName: req.user ? req.user.firstName : null,
+    error : req.flash('error')
   }
   res.render('index', vm);
   // request(url, function(err, resp, body){

@@ -6,6 +6,9 @@
 
 	function chunk(arr, size){
 		var newArr = [];
+		if (size === 0) {
+			size = arr.length;
+		}
 		for (var i = 0; i < arr.length; i+=size) {
 			newArr.push(arr.slice(i, i+size));
 		}
@@ -19,7 +22,7 @@
 		$http.get('/probs')
 		.then(function(response){
 			vm.data = response.data;
-			vm.probListArray =  chunk(vm.data, vm.select);
+			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
 			vm.probList = vm.probListArray[vm.page];
 		})
 
@@ -78,11 +81,10 @@
 		}
 
 		vm.rePage = function(){
-			if (parseInt(vm.select) === 0) {
-				vm.select = vm.data.length;
-			}
+			
 			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
 			vm.probList = vm.probListArray[vm.page];
+
 		}
 
 		vm.marked = function(prob){

@@ -11,8 +11,9 @@
 	<span ng-show = "vm.probList">Items to display: </span>
 	<select ng-show = "vm.probList" ng-model='vm.select' ng-change="vm.rePage()">
 		<option value="10" ng-click='vm.rePage()'>10</option>
-		<option value="50" ng-click='vm.rePage()'>50</option>
+		<option selected value="50" ng-click='vm.rePage()'>50</option>
 		<option value="100" ng-click='vm.rePage()' >100</option>
+		<option value="0" ng-click='vm.rePage()' >All</option>
 	</select>
 	<table >
 		<tr ng-show="vm.probList">
@@ -31,7 +32,7 @@
 			</td>
 
 			<td ng-show="vm.user">
-				<a href="" ng-click="vm.order('user')">Finished</a>
+				<a href="" ng-click="vm.order('status')">Finished</a>
 			</td>
 			
 		</tr>

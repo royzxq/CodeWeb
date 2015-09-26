@@ -27,6 +27,7 @@
 		.then(function(response){
 			// console.log(response.data);
 			vm.user = response.data;
+			vm.data.status = vm.user.questions;
 		})
 		
 		vm.goto = function(url){
@@ -78,6 +79,9 @@
 		}
 
 		vm.rePage = function(){
+			if (parseInt(vm.select) === 0) {
+				vm.select = vm.data.length;
+			}
 			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
 			vm.probList = vm.probListArray[vm.page];
 		}

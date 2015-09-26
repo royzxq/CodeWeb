@@ -27,7 +27,6 @@
 		.then(function(response){
 			// console.log(response.data);
 			vm.user = response.data;
-			vm.data.status = vm.user.questions;
 		})
 		
 		vm.goto = function(url){

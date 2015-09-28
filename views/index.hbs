@@ -5,8 +5,12 @@
 <script src="/bower/angular/angular.min.js"></script>
 <script src="/bower/angular-route/angular-route.min.js"></script>
 <script src="/bower/ngDialog/js/ngDialog.min.js"></script>
+{{#if setting.production}}
+<script src="/js/build/oj.min.js?v=2"></script>
+{{else}}
 <script src="/js/app/app.js"></script>
 <script src="/js/app/route-config.js"></script>
 <script src="/js/app/index.js"></script>
+{{/if}}
 <link href="/bower/ngDialog/css/ngDialog.min.css" rel="stylesheet" />
 <link href="/bower/ngDialog/css/ngDialog-theme-default.min.css" rel="stylesheet" />

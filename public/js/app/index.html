@@ -48,7 +48,7 @@
 
 			<td ng-bind="prob.source"></td>
 
-			<td ng-show='vm.user' ng-bind="vm.user.questions[prob.title]"></td>
+			<td ng-show='vm.user' ng-bind="vm.user.questions[prob.title].status"></td>
 			
 		</tr>
 	</table>
@@ -59,12 +59,19 @@
 	<div ng-repeat="des in vm.prob.contents">
 		<strong ng-bind-html="des"></strong>
 	</div>
+	<div>
+		Note: <p ng-bind ='vm.user.questions[vm.prob.title].note' ng-model = 'vm.note' contenteditable='true'></p> <br>
+		// VM.NOTE : <p ng-bind='vm.note'> </p>
+	</div>
+	<br>
 	<button ng-click="vm.goto(vm.prob.link)">Link</button>
 	
 	<button ng-click='vm.cancel()'>Cancel</button>
 
 	<div ng-show="vm.user" style="float:right">
-		<button ng-show='vm.user.questions[vm.prob.title]' ng-click="vm.marked(vm.prob)">UnFinished</button>
-		<button ng-show='!vm.user.questions[vm.prob.title]' ng-click="vm.marked(vm.prob)">Finished</button>
+		<button ng-show='vm.user.questions[vm.prob.title].status' ng-click="vm.marked(vm.prob)">UnFinished</button>
+		<button ng-show='!vm.user.questions[vm.prob.title].status' ng-click="vm.marked(vm.prob)">Finished</button>
 	<div>
+
+	
 </script>

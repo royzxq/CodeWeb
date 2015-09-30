@@ -88,10 +88,13 @@
 		}
 
 		vm.marked = function(prob){
-			vm.user.questions[prob.title] = !vm.user.questions[prob.title];
+			vm.user.questions[prob.title].status = !vm.user.questions[prob.title].status;
 			$http.post('/users/mark',{user: vm.user, prob: vm.user.questions}).then(function(err){
 			});
 		}
-
+		vm.note = "";
+		vm.testEdit = function(){
+			alert('hello');
+		}
 	}
 }());

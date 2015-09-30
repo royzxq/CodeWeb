@@ -22,7 +22,7 @@ exports.addUser = function  (user, next) {
 			}
 			for(var p = 0 ; p < probs.length ; p++){
 				// console.log(probs[p].title)
-				newUser.questions[probs[p].title] = false;
+				newUser.questions[probs[p].title] = {status: false, note : ""};
 			}
 			newUser.save(function(err){
 				if (err) {
@@ -45,7 +45,7 @@ exports.updateQuestions = function(id, prob, next){
 	// console.log(id);
 	// console.log(title);
 	User.update({_id: id}, {$set: { questions: prob}}, function(err, user){
-		console.log(user);
+		// console.log(user);
 		if (err) {
 			return next(err);
 		}

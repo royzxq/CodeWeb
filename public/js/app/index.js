@@ -1,8 +1,14 @@
 
 (function () {
 	'use strict';
+	// angular.module('app').run(function(editableOptions){
+	// 	editableOptions.theme = 'bs1';
+	// });
+
 	angular.module('app').controller('ListController', ListController);
 	ListController.$inject = ['$http','$window','ngDialog','$scope','$sce'];
+
+	
 
 	function chunk(arr, size){
 		var newArr = [];
@@ -19,6 +25,10 @@
 		vm.page = 0;
 		vm.select = 50;
 		vm.options = [10,50,100,200];
+		vm.predicate = 'title';
+		vm.reverse = false;
+		vm.note = "";
+
 		$http.get('/probs')
 		.then(function(response){
 			vm.data = response.data;
@@ -58,8 +68,7 @@
 		vm.cancel = function(){
 			ngDialog.close();
 		};
-		vm.predicate = 'title';
-		vm.reverse = false;
+		
 		vm.order = function(predicate){
 			vm.reverse = (vm.predicate === predicate) ? !vm.reverse : false;
 			vm.predicate = predicate;
@@ -87,14 +96,19 @@
 
 		}
 
-		vm.marked = function(prob){
-			vm.user.questions[prob.title].status = !vm.user.questions[prob.title].status;
+		vm.marked = function(){
+			vm.user.questions[vm.prob.title].status = !vm.user.questions[vm.prob.title].status;
 			$http.post('/users/mark',{user: vm.user, prob: vm.user.questions}).then(function(err){
 			});
 		}
-		vm.note = "";
-		vm.testEdit = function(){
-			alert('hello');
-		}
+		
+		$scope.$watch("vm.note",function(newVal, oldVal){
+			if (newVal !== oldVal) {
+				// console.log(newVal);
+				vm.user.questions[vm.prob.title].note = newVal;
+				$http.post('/users/mark',{user: vm.user, prob: vm.user.questions}).then(function(err){
+				});
+			}
+		});
 	}
 }());

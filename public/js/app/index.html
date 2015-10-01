@@ -60,8 +60,8 @@
 		<strong ng-bind-html="des"></strong>
 	</div>
 	<div>
-		Note: <p ng-bind ='vm.user.questions[vm.prob.title].note' ng-model = 'vm.note' contenteditable='true'></p> <br>
-		// VM.NOTE : <p ng-bind='vm.note'> </p>
+		Note: <a href="#" editable-text="vm.note">{{vm.user.questions[vm.prob.title].note || 'empty'}}  </a>
+		<br>		
 	</div>
 	<br>
 	<button ng-click="vm.goto(vm.prob.link)">Link</button>
@@ -69,8 +69,8 @@
 	<button ng-click='vm.cancel()'>Cancel</button>
 
 	<div ng-show="vm.user" style="float:right">
-		<button ng-show='vm.user.questions[vm.prob.title].status' ng-click="vm.marked(vm.prob)">UnFinished</button>
-		<button ng-show='!vm.user.questions[vm.prob.title].status' ng-click="vm.marked(vm.prob)">Finished</button>
+		<button ng-show='vm.user.questions[vm.prob.title].status' ng-click="vm.marked()">UnFinished</button>
+		<button ng-show='!vm.user.questions[vm.prob.title].status' ng-click="vm.marked()">Finished</button>
 	<div>
 
 	

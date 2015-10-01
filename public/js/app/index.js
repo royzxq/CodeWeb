@@ -100,7 +100,7 @@
 			});
 		}
 		
-		$scope.$watch("vm.note",function(newVal, oldVal){
+		$scope.$watch("vm.user.questions[vm.prob.title].note",function(newVal, oldVal){
 			if (newVal !== oldVal) {
 				// console.log(newVal);
 				vm.user.questions[vm.prob.title].note = newVal;

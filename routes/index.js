@@ -14,13 +14,7 @@ router.get('/', function(req, res, next) {
     error : req.flash('error')
   }
   res.render('index', vm);
-  // request(url, function(err, resp, body){
-  //     if(!err){
-  //         res.json(body);
-  //     } else{
-  //         res.status(500).json({status:"fail"});
-  //     }
-  // });
+
 });
 
 router.get('/probs', function(req, res, next) {

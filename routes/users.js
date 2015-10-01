@@ -66,7 +66,7 @@ router.post('/login', function(req, res, next){
 router.get('/logout', function(req, res, next){
 	req.logout();
 	req.session.destroy();
-	res.redirect('/');
+	res.render('index', {firstName: null});
 })
 
 router.get('/getUser', function(req, res, next){
@@ -76,9 +76,6 @@ router.get('/getUser', function(req, res, next){
 	else{
 		res.json(null);
 	}
-	// else{
-	// 	res.redirect('users/login');
-	// }
 })
 
 router.post("/mark", function(req, res, next){

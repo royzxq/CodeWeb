@@ -73,8 +73,9 @@
 		}
 
 		vm.goNextPage = function(){
-			vm.page += 1;
-			vm.page = vm.page % vm.probListArray.length;
+			if(vm.page < vm.probListArray.length-1){
+				vm.page += 1;
+			}
 			vm.probList = vm.probListArray[vm.page];
 		}
 
@@ -82,7 +83,7 @@
 			vm.page -= 1;
 			vm.page = vm.page % vm.probListArray.length;
 			if(vm.page < 0){
-				vm.page += vm.probListArray.length;
+				vm.page = 0;
 			}
 			vm.probList = vm.probListArray[vm.page];
 		}
@@ -90,6 +91,7 @@
 		vm.rePage = function(){
 			
 			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
+			vm.page = 0;
 			vm.probList = vm.probListArray[vm.page];
 
 		}

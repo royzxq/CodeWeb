@@ -15,7 +15,9 @@
 		<option value="100">100</option>
 		<option value="0">All</option>
 	</select>
-	To have more functionality, please create a new account or login!
+	<p ng-show="!vm.user && vm.probList">
+	<span><b>To have more functionality, please create a new account or login!</b></span>
+	</p>
 	<table >
 		<tr ng-show="vm.probList">
 			
@@ -61,7 +63,7 @@
 		<strong ng-bind-html="des"></strong>
 	</div>
 	<div>
-		Note: <a href="#" editable-text="vm.note">{{vm.user.questions[vm.prob.title].note || 'empty'}}  </a>
+		Note: &nbsp <a href="#" editable-text="vm.note"> {{vm.user.questions[vm.prob.title].note || 'empty'}}  </a>
 		<br>		
 	</div>
 	<br>

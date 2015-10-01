@@ -1,9 +1,6 @@
 
 (function () {
 	'use strict';
-	// angular.module('app').run(function(editableOptions){
-	// 	editableOptions.theme = 'bs1';
-	// });
 
 	angular.module('app').controller('ListController', ListController);
 	ListController.$inject = ['$http','$window','ngDialog','$scope','$sce'];

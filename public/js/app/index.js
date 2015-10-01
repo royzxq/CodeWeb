@@ -41,7 +41,8 @@
 		
 		vm.goto = function(url){
 			console.log(url);
-			$window.location.href=url;
+			// $window.location.href=url;
+			$window.open(url);
 		}
 		
 		// vm.getContent = function(title){

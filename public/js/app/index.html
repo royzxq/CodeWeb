@@ -14,7 +14,11 @@
 		<option  value="50">50</option>
 		<option value="100">100</option>
 		<option value="0">All</option>
-	</select>
+	</select> &nbsp &nbsp
+	<span ng-show="vm.probList" style="float:right">
+		<b>Search:</b> <input ng-model="query">
+	</span>
+	
 	<p ng-show="!vm.user && vm.probList">
 	<span><b>To have more functionality, please create a new account or login!</b></span>
 	</p>
@@ -39,7 +43,7 @@
 			</td>
 			
 		</tr>
-		<tr ng-repeat = "prob in vm.probList | orderBy:vm.predicate:vm.reverse">
+		<tr ng-repeat = "prob in vm.probList | orderBy:vm.predicate:vm.reverse | filter:query">
 			<td >
 				<a ng-bind="prob.title" ng-click='vm.selectProb(prob)' href></a>
 			</td>

@@ -59,26 +59,54 @@
 			
 		</tr>
 	</table>
+	<button ng-show = "vm.probList" ng-click='vm.goPreviousPage()' class='ngdialog-theme-default'>Prev</button>
+	<span ng-show = "vm.probList">
+		<strong>{{vm.page+1}} / {{vm.probListArray.length}}</strong>
+	</span>
+	<button ng-show = "vm.probList" ng-click='vm.goNextPage()' class='ngdialog-theme-default'>Next</button>
+	<span ng-show = "vm.probList">Items to display: </span>
+	<select ng-show = "vm.probList" ng-model='vm.select' ng-change="vm.rePage()" ng-init="vm.select = '50'" >
+		<option value="10" >10</option>
+		<option  value="50">50</option>
+		<option value="100">100</option>
+		<option value="0">All</option>
+	</select>
 </div>
 
 <script type="text/ng-template" id='probContent.html'>
+	<div>
 	<h1 ng-bind="vm.prob.title"></h1>
 	<div ng-repeat="des in vm.prob.contents">
 		<strong ng-bind-html="des"></strong>
 	</div>
-	<div>
+	<div ng-show="vm.user">
 		Note: &nbsp <a href="#" editable-text="vm.user.questions[vm.prob.title].note"> {{vm.user.questions[vm.prob.title].note || 'empty'}}  </a>
 		<br>		
 	</div>
 	<br>
+	<div>
+	<button ng-click = "vm.showTag()"> Tags </button>
+	<span ng-show = 'vm.tag' ng-repeat = 'tag in vm.prob.tags'>
+		<span ng-bind='tag'> </span>   &nbsp
+	</span>
+	</div>
+	<br>
+	<button ng-click = "vm.showRelated()"> Related </button>
+	<span ng-show = 'vm.related' ng-repeat='res in vm.prob.related'>
+		<span ng-bind='res'> </span>   &nbsp &nbsp
+
+	 </span>
+	</div>
+	<br>
 	<button ng-click="vm.goto(vm.prob.link)">Link</button>
 	
-	<button ng-click='vm.cancel()'>Cancel</button>
+	<button ng-click='vm.cancel()' style='float:right'>Cancel</button>
 
 	<div ng-show="vm.user" style="float:right">
 		<button ng-show='vm.user.questions[vm.prob.title].status' ng-click="vm.marked()">UnFinished</button>
 		<button ng-show='!vm.user.questions[vm.prob.title].status' ng-click="vm.marked()">Finished</button>
-	<div>
+	</div>
+	</div>
 
 	
 </script>

@@ -25,6 +25,8 @@
 		vm.predicate = 'title';
 		vm.reverse = false;
 		vm.note = "";
+		vm.tag = false;
+		vm.related = false;
 
 		$http.get('/probs')
 		.then(function(response){
@@ -100,6 +102,14 @@
 			vm.user.questions[vm.prob.title].status = !vm.user.questions[vm.prob.title].status;
 			$http.post('/users/mark',{user: vm.user, prob: vm.user.questions}).then(function(err){
 			});
+		}
+
+		vm.showTag = function(){
+			vm.tag = !vm.tag;
+		}
+
+		vm.showRelated = function(){
+			vm.related = !vm.related;
 		}
 		
 		$scope.$watch("vm.user.questions[vm.prob.title].note",function(newVal, oldVal){

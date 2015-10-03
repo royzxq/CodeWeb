@@ -27,6 +27,12 @@ userSchema.path('email').validate(function(value, next) {
   });
 }, 'That email is already in use');
 
+
+userSchema.path('email').validate(function(value,next){
+  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  return next(re.test(value));
+}, 'Invalid email');
+
 // userSchema.path('password').validate(function(value){
 //   return value.length > 6;
 // }, "password length should be greater than 6");

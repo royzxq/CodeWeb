@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    font: 17px helvetica, sans-serif;
+    background: #353535;
+}
+
+.node {
+    cursor: pointer;
+    /*cursor: auto;*/
+}
+
+.background {
+    -webkit-opacity: .20;
+    opacity: 0.2;
+}
+.hover {
+    opacity: 1;
+    -webkit-opacity : 1;
+}
+
+.link {
+    stroke-width: 0.1;
+}
+
+.link.hover {
+    stroke-width: 1.2;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+text {
+    max-width: 40px;
+    overflow: hidden;
+}
+
+.hidden {
+    /*display: none;*/
+}
+
+#sidebar {
+    background: rgba(29, 29, 29, 0.93);
+    width: 250px;
+    position: absolute;
+    height: 100%;
+    color: #b3b3b3;
+    /*color: red;*/
+}
+
+.legend {
+    background: rgba(29, 29, 29, 0.93);
+    width: 200px;
+    position: absolute;
+    height: 200px;
+    color: rgba(255,255,84,0.9);
+    margin-left: 83%;
+    margin-top:20px;
+}
+#sidebar p {
+    padding: 20px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.nodes-info, .edges-info {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.nodes-info li, .edges-info li {
+    padding: 2px;
+    margin: 0 0 0 15px;
+    list-style: none;
+    font-size: 15px;
+    padding-left: 30px;
+}
+
+#sidebar h3 {
+    padding: 10px 15px;
+    margin-left: 30px;
+    color: #fbf0f7;
+}
+
+.nodes-info li em {
+    display: inline-block;
+    width: 17px;
+    position: absolute;
+    height: 17px;
+    background: green;
+    margin-left: -25px;
+    border-radius: 50%;
+}
+
+.edges-info li em {
+    display: inline-block;
+    width: 20px;
+    position: absolute;
+    height: 3px;
+    margin-top: 8px;
+    background: purple;
+    margin-left: -25px;
+}
+field {
+    border : 0;
+    margin-left: 300px;
+    width : 200px;
+}
+/*select {*/
+    /*width: 100px;*/
+/*}*/
+/*label {*/
+    /*display: block;*/
+    /*margin: 20px 0 0 0;*/
+/*}*/
+.demo{
+    position: absolute;
+    left : 50px;
+    top:10px;
+    /*width : 100px;*/
+    /*height : 4000px;*/
+}
+.submitbutton{
+    position: relative;
+    top: 35px;
+}
+div  {
+    width : 200px;
+}
+#steps {
+    position: absolute;
+    top: 50px;
+}
+#layout {
+    position: absolute;
+    top : 50px;
+}
+.subnet {
+    align-content: center;
+    position: absolute;
+    top : 50px;
+}
+#search{
+    align-content: center;
+    height: 30px;
+    width: 100px;
+    margin-top: 0px;
+}

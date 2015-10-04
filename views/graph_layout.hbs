@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>OJ Integrating Website {{#if title}} - {{title}}{{/if}}</title>
-        <meta name="description" content="No matter what you're craving, Restaurant to Room has you covered. Our fast and friendly delivery service brings you hot, fresh food, from a diverse choice of local restaurants." />
+       
         <link rel="stylesheet" href="/stylesheets/wp-backgrounds.css" type='text/css' media='all' />
         <link rel='stylesheet' href="/stylesheets/mjCont.css" type='text/css' media='all' />
         <link rel='stylesheet' href='/stylesheets/front.css' type='text/css' media='all' />
@@ -12,7 +12,6 @@
         <link id="twentytwelve-fonts-css" media="all" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&subset=latin,latin-ext" rel="stylesheet">
         <script type='text/javascript' src='/js/jquery.js'></script>
         <script type='text/javascript' src='/js/wp-backgrounds.js'></script>
-        <script type='text/javascript' src="/js/main.js"></script>
         {{#if firstName}}
         <div id="greeting" style="float:right">
           <strong>Hi, {{firstName}}!</strong>
@@ -24,29 +23,10 @@
             <a href="/users/login">Login</a>
         </div>
         {{/if}}
+        <a href="/">Back To Main Page</a>
+
     </head>
     <body class="custom-font-enabled">
-        <div id="page" class="hfeed site">
-            
-	        <div id="main" class="wrapper">
-	            <div id="primary" class="site-content">
-		            <div id="content" role="main">
-                        <div class="entry-content">
-							<div class="panel-grid" id="pg-218-0">
-								
-								<div class="panel-grid-cell" id="pgc-218-0-1">									
-									<div id="page-content" class="panel widget panel-first-child panel-last-child">
-										<!-- BEGIN page-specific content -->
-										{{{body}}}
-										<!-- END page-specific content -->
-									</div>									
-								</div>
-							</div>
-						</div>    
-                    </div>
-	            </div>
-            </div>
-	        
-        </div>        
+        {{{body}}}
     </body>
-</html>
+</html>     

@@ -1,0 +1,49 @@
+<div id="sidebar">
+    <form action="#">
+        <fieldset style="height:400px; text-align: center ; margin-bottom: 10px">
+            <!--<label for="selectArea" style="font-size: 21px; margin-bottom: 10px">-->
+                <!--Please Select Options-->
+            <!--</label>-->
+            <h4>Please Select Options </h4>
+            <select class="subnet" id="subnet" name="subnet">
+                <option id="option0" value="ERBB2" selected="selected">ERBB2</option>
+                <option id="option1" value="ESR1" >ESR1</option>
+                <option value="ESR2">ESR2</option>
+            </select>
+
+            <select name="layout" id="layout">
+                <option value="Force" selected="selected">Force</option>
+                <option value="Chord">Chord</option>
+            </select>
+            <select name="mutable" id="mutable">
+            </select>
+
+            <input class='submitbutton' type="submit" value ='submit'/>
+            <div style="margin-top: 60px">
+            <label for="slider" style="font-size: 20px; margin-top: 10px">Adjust the size of the nodes </label>
+            <div id="slider" style="margin-top: 10px"></div>
+            </div>
+        </fieldset>
+
+    </form>
+
+    <div id="'searchArea" style="text-align: center; margin-top: 20px; margin-bottom: 40px;">
+        <label for="search">Type in the Gene ID you want to search</label>
+        <input type="search" name="search" id="search" placeholder="search"  />
+    </div>
+
+    <!--</header>-->
+    <h3 style="margin-bottom: 0px">Gene Info</h3>
+    <p id="description" style="text-align: center; margin-bottom: 0px">
+        This is the description of the gene
+    </p>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- <script src="jquery-ui/jquery-ui.min.js"></script> -->
+
+<!-- <script src="workertest.js"></script> -->
+<!-- <script src="selector.js"></script> -->
+<link href="/stylesheets/graph.css" rel="stylesheet" />
+<script src="/js/graph/graph.js"></script>

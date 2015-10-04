@@ -1,2 +1,6 @@
-change some validation into the node rather with html;
-visualize the question in D3
+visualize the question in D3:
+	1. use d3 to visaulize the graph(finished)
+	2. adjust the layout 
+		add link in index page to go graph
+	3. Display the content somewhere by selecting particular node
+	4. Make use of page rank somehow (store page rank in database?)

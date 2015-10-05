@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
 	jQuery("#sidebar").resizable();
-
+	jQuery('#searchArea label p').css('text-align','center');
 	// var layout ;
 	// jQuery('#layout').selectmenu({
 	// 	select : function(event, data){

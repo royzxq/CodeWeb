@@ -11,3 +11,12 @@ exports.getProbs = function(next){
         next(null,probs);
     });
 }
+
+exports.getProb = function(title, next){
+	Prob.findOne({title: title}, function(err, prob){
+		if (err) {
+			return next(err);
+		}
+		next(null, prob);
+	});
+}

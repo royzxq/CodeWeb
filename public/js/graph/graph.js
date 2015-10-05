@@ -1,6 +1,7 @@
 
 (function() {
 
+
 	var width = window.innerWidth,
 		height = window.innerHeight;
 
@@ -31,6 +32,7 @@
 	    .on('click', blurNodes);
 
 	var nodes, links, text, graphSource;
+	var nodeMap = {};
 	var initSize = [];
 	d3.json("/js/edge.json", function(error, graph) {
 	    graphSource = graph;
@@ -43,7 +45,7 @@
 
 
 	function loadGraph(){
-		var nodeMap = {};
+		
 		for(var i = 0 ; i < graphSource.nodes.length; i++){
 			nodeMap[graphSource.nodes[i].label] = graphSource.nodes[i];
 		}
@@ -75,7 +77,7 @@
 				})
 				.on('click', function(d){
 					window.location = '#' + d.label;
-					catchLocation.call(this, d);
+					catchLocation.call(this, d.label);
 				})
 
 		nodes.append('circle')
@@ -146,11 +148,28 @@
 
 	}
 	function catchLocation(node, focus){
-		console.log(parseFloat(node.attributes.PageRank).toFixed(5));
-		jQuery('#description').html("Title: " + node.label + "\n PageRank: " + parseFloat(node.attributes.PageRank).toFixed(5));
+		node = nodeMap[node];
+		jQuery.ajax({
+			type: "GET",
+			url : "/probs/" + node.label
+		}).then(function(prob){
+				jQuery('#description').html("Title: " + node.label + "<br> PageRank: " + parseFloat(node.attributes.PageRank).toFixed(5) + '<br>');
+				jQuery('#description').append("<a href='"+ prob.link + "'> Link </a>");
+			});
 
 		selectNode.call(this, node, focus);
 	}
+
+	jQuery("#search").keypress(function(event){
+		if (event.which == 13) {
+			var searchField = jQuery("#search").val();
+			// console.log(typeof(searchField));
+		    window.location = '#' + searchField;
+		    catchLocation(searchField, true);
+		}
+	   
+	//    console.log(searchField);
+	});
 
 	jQuery("#slider").slider({
 	    orientation: "horizantal",

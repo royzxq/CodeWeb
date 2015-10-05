@@ -26,4 +26,13 @@ router.get('/probs', function(req, res, next) {
       res.json(probs);
     })
 })
+
+router.get('/probs/:title', function(req,res,next){
+    probService.getProb(req.params.title, function(err, prob){
+      if (err) {
+        return res.status(500).json({error:"Failed"});
+      }
+      res.json(prob);
+    })
+})
 module.exports = router;

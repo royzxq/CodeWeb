@@ -6,8 +6,8 @@
 	//D3 force directed layout
 	//Try playing with the charge and link distance
 	var force = d3.layout.force()
-	    .charge(-50)
-	    .linkDistance(100)
+	    .charge(-30)
+	    .linkDistance(30)
 	    .size([width, height]);
 
 	var tip = d3.tip()
@@ -18,13 +18,14 @@
 				.attr('width',width)
 				.attr('height',height)
 				.call(tip);
-
+	var nodeMap = {};
+			
 	d3.json('/js/edge.json', function(err, graph){
 		if (err) {
 			console.log(err);
 			return null;
 		}
-		var nodeMap = {};
+		
 		for(var i = 0 ; i < graph.nodes.length; i++){
 			nodeMap[graph.nodes[i].label] = graph.nodes[i];
 		}
@@ -38,7 +39,7 @@
 					.enter()
 					.append('line')
 					.attr('class','line')
-					.attr('stroke', function(d){return "black";})
+					.attr('stroke', function(d){return d.color;})
 
 		var nodes = svg.selectAll('.node')
 					.data(graph.nodes)
@@ -47,15 +48,16 @@
 					.call(force.drag)
 					.on('mouseover', tip.show)
 					.on('mouseout',tip.hide);
+
 		nodes.append('circle')
 			.attr('r',function(d){
-				return Math.log(d.size)*5;
+				return d.size/2;
 			})
 			.attr("fill", function(d){
 				return d.color;
 			})
 			.attr("class",'node');
-
+			
 		force.on('tick',function(){
 			links.attr("x1",function(d){return nodeMap[d.source].x})
 				.attr('x2', function(d){return nodeMap[d.target].x})
@@ -64,7 +66,9 @@
 
 			nodes.attr("transform", function(d){return "translate("+d.x +","+d.y+")";});
 		});
-					
+			
 	});
+
+	
 
 }());

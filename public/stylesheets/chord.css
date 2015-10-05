@@ -1,0 +1,45 @@
+#circle circle {
+fill: none;
+pointer-events: all;
+}
+ 
+.group path {
+fill-opacity: .5;
+}
+
+path.text{
+color: white;
+}
+ 
+path.chord {
+stroke-width: 0.2px;
+}
+ 
+#circle:hover path.fade {
+display: none;
+}
+
+body {
+background: #252525;
+/*background: #ffffff;*/
+margin: 1em auto 4em auto;
+position: relative;
+width: 960px;
+color:white;
+}
+
+header {
+font-size: 48px;
+font-weight: 300;
+letter-spacing: -2px;
+margin: .3em 0 .1em 0;
+color: white;
+}
+ 
+aside {
+font-size: 20px;
+right: -1;
+position: absolute;
+width: 200px;
+color: white;
+}

@@ -36,8 +36,8 @@
 	    graphSource = graph;
 	    // console.log(graph);
 	    loadGraph();
-	    $('circle').each(function(d){
-	        initSize.push($(this).attr('r'));
+	    jQuery('circle').each(function(d){
+	        initSize.push(jQuery(this).attr('r'));
 	    });
 	});
 
@@ -112,13 +112,13 @@
 	function blurNodes(){
 		nodes.attr("class",'node');
 		links.attr('class','link');
-		$(".node").css('-webkit-opacity',0.2);
+		jQuery(".node").css('-webkit-opacity',0.2);
 	}
 
 	function selectNode(node, focus){
 		blurNodes();
 		nodes.attr("class","node background");
-		$(this).attr('class',"node hover").css('-webkit-opacity', 1);
+		jQuery(this).attr('class',"node hover").css('-webkit-opacity', 1);
 
 		links.filter(function(d){
 			return d.source === node.label || d.target === node.label;
@@ -146,10 +146,29 @@
 
 	}
 	function catchLocation(node, focus){
-		// console.log("title:" + node.label + ", PageRank:" + node.attributes.PageRank);
-		$('#description').html("title:" + node.label + "\n PageRank:" + node.attributes.PageRank)
+		console.log(parseFloat(node.attributes.PageRank).toFixed(5));
+		jQuery('#description').html("Title: " + node.label + "\n PageRank: " + parseFloat(node.attributes.PageRank).toFixed(5));
+
 		selectNode.call(this, node, focus);
 	}
+
+	jQuery("#slider").slider({
+	    orientation: "horizantal",
+	    range: "min",
+	    max: 15,
+	    value: 8,
+	    slide: reSize,
+	    change:reSize
+	});
+
+	function reSize(){
+		var count = 0;
+		jQuery('circle').each(function(d){
+			jQuery(this).attr('r', function(){
+				return initSize[count++] * jQuery("#slider").slider("value") / 8
+			});
+		});	
+	};
 
 
 }());

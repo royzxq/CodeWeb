@@ -19,7 +19,7 @@
 				.attr('height',height)
 				.call(tip);
 	var nodeMap = {};
-			
+		initSize = [];
 	d3.json('/js/edge.json', function(err, graph){
 		if (err) {
 			console.log(err);
@@ -57,6 +57,10 @@
 				return d.color;
 			})
 			.attr("class",'node');
+
+		jQuery('circle').each(function(d){
+	        initSize.push(jQuery(this).attr('r'));
+	    });
 			
 		force.on('tick',function(){
 			links.attr("x1",function(d){return nodeMap[d.source].x})
@@ -68,6 +72,24 @@
 		});
 			
 	});
+	
+	jQuery("#slider").slider({
+	    orientation: "horizantal",
+	    range: "min",
+	    max: 15,
+	    value: 8,
+	    slide: reSize,
+	    change:reSize
+	});
+
+	function reSize(){
+		var count = 0;
+		jQuery('circle').each(function(d){
+			jQuery(this).attr('r', function(){
+				return initSize[count++] * jQuery("#slider").slider("value") / 8
+			});
+		});	
+	};
 
 	
 

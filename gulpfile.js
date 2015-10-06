@@ -21,6 +21,14 @@ gulp.task('default', function() {
 
 	gulp.src([
 		'public/js/graph/graph_ui.js',
+		'public/js/graph/graph_fruch.js'
+		])
+	.pipe(concat('graph_fruch.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('public/js/build'));
+
+	gulp.src([
+		'public/js/graph/graph_ui.js',
 		'public/js/graph/force.js'
 		])
 	.pipe(concat('force.min.js'))

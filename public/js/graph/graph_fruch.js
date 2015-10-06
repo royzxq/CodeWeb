@@ -33,7 +33,7 @@
 	var nodeMap = {};
 	var initSize = [], nodeTitle = [];
 	
-	d3.json("/js/Force.json", function(error, graph) {
+	d3.json("/js/Fruchterman.json", function(error, graph) {
 	    graphSource = graph;
 	    // console.log(graph);
 	    loadGraph();

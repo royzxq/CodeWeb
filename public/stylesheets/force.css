@@ -20,6 +20,15 @@ body {
   stroke-width: 4;
 }
 
+#sidebar {
+    background: rgba(29, 29, 29, 0.93);
+    width: 300px;
+    position: absolute;
+    height: 100%;
+    color: #b3b3b3;
+    /*color: red;*/
+}
+
 .d3-tip {
   line-height: 0.5;
   padding: 4px;

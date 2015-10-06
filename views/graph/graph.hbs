@@ -39,5 +39,9 @@
 <!-- <script src="selector.js"></script> -->
 <link href="/stylesheets/graph.css" rel="stylesheet" />
 <script type="text/javascript" src='/bower/typeahead.js/dist/typeahead.jquery.min.js'></script>
+{{#if settings.production}}
+<script type="text/javascript" src='/js/build/graph.min.js?v=2'></script>
+{{else}}
 <script type="text/javascript" src='/js/graph/graph_ui.js'></script>
 <script src="/js/graph/graph.js"></script>
+{{/if}}

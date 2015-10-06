@@ -2,4 +2,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js"></script>
 
 <link href="/stylesheets/force.css" rel="stylesheet" />
+{{#if settings.production}}
+<script type="text/javascript" src='/js/build/force.min.js?v=2'></script>
+{{else}}
 <script src="/js/graph/force.js"></script>
+<script src="/js/graph/graph_ui.js"></script>
+{{/if}}

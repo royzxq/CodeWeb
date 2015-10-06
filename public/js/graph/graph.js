@@ -33,7 +33,7 @@
 
 	var nodes, links, text, graphSource;
 	var nodeMap = {};
-	var initSize = [];
+	var initSize = [], nodeTitle = [];
 	d3.json("/js/edge.json", function(error, graph) {
 	    graphSource = graph;
 	    // console.log(graph);
@@ -82,6 +82,7 @@
 
 		nodes.append('circle')
 			.attr('r', function(d){
+				nodeTitle.push(d.label);
 				return d.size/1.5;
 			})
 			.style('fill',function(d){
@@ -153,8 +154,9 @@
 			type: "GET",
 			url : "/probs/" + node.label
 		}).then(function(prob){
-				jQuery('#description').html("Title: " + node.label + "<br> PageRank: " + parseFloat(node.attributes.PageRank).toFixed(5) + '<br>');
-				jQuery('#description').append("<a href='"+ prob.link + "'> Link </a>");
+				$('#description').html("Title: " + node.label + "<br> PageRank: " + parseFloat(node.attributes.PageRank).toFixed(5) );
+				$('#description').append("<br><a href='"+ prob.link + "'> Link </a>");
+				// $('#sidebar').css("display", "inline-block");
 			});
 
 		selectNode.call(this, node, focus);
@@ -188,6 +190,30 @@
 			});
 		});	
 	};
+
+	var substringMatch = function(strs){
+		return function findMatch(q, cb){
+			var matches, substringRegex;
+			matches = [];
+			substringRegex = new RegExp(q, 'i');
+
+			jQuery.each(strs, function(i, str){
+				if (substringRegex.test(str)) {
+					matches.push(str);
+				}
+			})
+			cb(matches);
+		};
+	}
+
+	$('#searchArea, #search').typeahead({
+		hint: false,
+		highlight: true,
+		minLength: 2
+	},{
+		name: 'title',
+		source: substringMatch(nodeTitle)
+	});
 
 
 }());

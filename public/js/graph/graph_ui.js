@@ -1,6 +1,9 @@
-jQuery(document).ready(function() {
-	jQuery("#sidebar").resizable();
-	jQuery('#searchArea label p').css('text-align','center');
+jQuery(document).ready(function($) {
+	$("#sidebar").resizable();
+	$('#searchArea label p').css('text-align','center');
+	$.supersized({
+        slides : [ {image : '/images/black_dark_shadow_9663_2560x1600.jpg'  } ]
+    });
 	// var layout ;
 	// jQuery('#layout').selectmenu({
 	// 	select : function(event, data){

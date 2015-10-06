@@ -1,3 +1,14 @@
+body {
+    margin: 0;
+    font: 17px helvetica, sans-serif;
+    background: #353535;
+}
+
+.background {
+    -webkit-opacity: .20;
+    opacity: 0.2;
+}
+
 .node {
   stroke: #fff;
   stroke-width: 1.5px;

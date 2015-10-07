@@ -17,7 +17,7 @@
     if (!location.hash) {
 	    zoomer.scale(0.6);
 	    zoomer.translate([850, 700]);
-	    svg.attr("transform","translate(830, 700) scale(0.7)");
+	    svg.attr("transform","translate(830, 700) scale(0.4)");
 	}
 
 	var overlaySize = width * 10; // maxzoomlevel
@@ -83,7 +83,7 @@
 			.attr('r', function(d){
 				var label = d.label.split('_').join(" ");
 				nodeTitle.push(label);
-				return d.size/1.5;
+				return d.size;
 			})
 			.style('fill',function(d){
 				return d.color;

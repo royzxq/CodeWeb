@@ -5,7 +5,6 @@
 	angular.module('app').controller('ListController', ListController);
 	ListController.$inject = ['$http','$window','ngDialog','$scope','$sce'];
 
-	
 
 	function chunk(arr, size){
 		var newArr = [];
@@ -28,9 +27,29 @@
 		vm.tag = false;
 		vm.related = false;
 
+		vm.tagSet = {};
+		vm.sortedTags = [];
 		$http.get('/probs')
 		.then(function(response){
 			vm.data = response.data;
+			// console.log(vm.data);
+			if (Object.keys(vm.tagSet).length === 0) {
+				for (var i = 0; i < vm.data.length; i++) {
+					for(var j = 0; j < vm.data[i].tags.length; j++){
+						if(vm.data[i].tags[j] in vm.tagSet){
+							vm.tagSet[vm.data[i].tags[j]] += 1;
+						}
+						else{
+							vm.tagSet[vm.data[i].tags[j]] = 1;
+						}
+					}
+				}
+				delete vm.tagSet['LintCode Copyright'];
+				for(var tag in vm.tagSet){
+					vm.sortedTags.push([tag, vm.tagSet[tag]]);
+				}
+				vm.sortedTags.sort(function(a,b){return b[1]-a[1];});
+			}			
 			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
 			vm.probList = vm.probListArray[vm.page];
 		})

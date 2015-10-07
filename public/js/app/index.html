@@ -1,7 +1,6 @@
 <div>
-	<div>
 	
-	</div>
+	
 	<strong ng-show="!vm.probList">Loading...</strong>
 	<button ng-show = "vm.probList" ng-click='vm.goPreviousPage()' class='ngdialog-theme-default'>Prev</button>
 	<span ng-show = "vm.probList">
@@ -22,7 +21,9 @@
 	<p ng-show="!vm.user && vm.probList">
 	<span><b>To have more functionality, please create a new account or login!</b></span>
 	</p>
-	<a href="/graph/graph/Force">Graph</a>
+	<div style="float: left; width: 70%;" ng-show="!vm.user && vm.probList">
+	<a href="/graph/graph/force"><strong style="font-size: 20px;">Graph Visualization of Questions</strong></a>
+	
 	<table >
 		<tr ng-show="vm.probList">
 			
@@ -72,7 +73,21 @@
 		<option value="100">100</option>
 		<option value="0">All</option>
 	</select>
+	</div>
+	<div style="float: right; width: 30%;">
+		<table>
+			<tr>
+				<td>Tag</td>
+				<td>Frequency</td>
+			</tr>
+			<tr ng-repeat = "tag in vm.sortedTags">
+				<td ng-bind="tag[0]"></td>
+				<td ng-bind="tag[1]"></td>
+			</tr>
+		</table> 
+	</div>
 </div>
+
 
 <script type="text/ng-template" id='probContent.html'>
 	<div>
@@ -86,28 +101,30 @@
 		</div>
 		<br>
 		<div>
-		<button ng-click = "vm.showTag()"> Tags </button>
-		<span ng-show = 'vm.tag' ng-repeat = 'tag in vm.prob.tags'>
-			<span ng-bind='tag'> </span>   &nbsp
-		</span>
+		<button ng-click = "vm.showTag()" class="dialogButton"> Tags </button>
+			<div ng-show="vm.tag">
+			<span  ng-repeat = 'tag in vm.prob.tags'>
+				<span ng-bind='tag'> </span>   &nbsp
+			</span>
+			</div>
 		</div>
 		<br>
-		<button ng-click = "vm.showRelated()"> Related </button>
-		<span ng-show = 'vm.related' ng-repeat='res in vm.prob.related'>
-			<span ng-bind='res'> </span>   &nbsp &nbsp
+		<button ng-click = "vm.showRelated()" > Related </button>
+			<div ng-show = 'vm.related'>
+			<span  ng-repeat='res in vm.prob.related'>
+				<span ng-bind='res'> </span>   &nbsp &nbsp
 
-		 </span>
+			 </span>
+			 </div>
 		</div>
 		<br>
-		<button ng-click="vm.goto(vm.prob.link)">Link</button>
+		<button ng-click="vm.goto(vm.prob.link)" >Link</button>
 		
-		<button ng-click='vm.cancel()' style='float:right'>Cancel</button>
+		<button ng-click='vm.cancel()' style='float:right' >Cancel</button>
 
 		<div ng-show="vm.user" style="float:right">
-			<button ng-show='vm.user.questions[vm.prob.title].status' ng-click="vm.marked()">UnFinished</button>
-			<button ng-show='!vm.user.questions[vm.prob.title].status' ng-click="vm.marked()">Finished</button>
+			<button ng-show='vm.user.questions[vm.prob.title].status' ng-click="vm.marked()" >UnFinished</button>
+			<button ng-show='!vm.user.questions[vm.prob.title].status' ng-click="vm.marked()" >Finished</button>
 		</div>
 	</div>
-
-	
 </script>

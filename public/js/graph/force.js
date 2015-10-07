@@ -20,7 +20,7 @@
 				.call(tip);
 	var nodeMap = {};
 		initSize = [];
-	d3.json('/js/edge.json', function(err, graph){
+	d3.json('/js/Force.json', function(err, graph){
 		if (err) {
 			console.log(err);
 			return null;

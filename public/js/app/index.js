@@ -28,7 +28,10 @@
 		vm.related = false;
 
 		vm.tagSet = {};
+		vm.tagContent = {};
 		vm.sortedTags = [];
+		vm.selectTags = [];
+		vm.showTag = true;
 		$http.get('/probs')
 		.then(function(response){
 			vm.data = response.data;
@@ -41,14 +44,29 @@
 						}
 						else{
 							vm.tagSet[vm.data[i].tags[j]] = 1;
+							vm.tagContent[vm.data[i].tags[j]] = [];
 						}
 					}
 				}
+
 				delete vm.tagSet['LintCode Copyright'];
 				for(var tag in vm.tagSet){
+					for(var i = 0 ; i < vm.data.length; i++){
+						// console.log(vm.data[i].tags);
+						var tagList = vm.data[i].tags;
+						if (tagList.indexOf(tag) >= 0) {
+							vm.tagContent[tag].push(vm.data[i]);
+						}
+					}
 					vm.sortedTags.push([tag, vm.tagSet[tag]]);
+					if (vm.tagSet[tag] >= 15) {
+						vm.selectTags.push([tag,vm.tagSet[tag]]);
+					}
 				}
+				// console.log(vm.tagContent);
+
 				vm.sortedTags.sort(function(a,b){return b[1]-a[1];});
+				vm.selectTags.sort(function(a,b){return b[1] - a[1];});
 			}			
 			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
 			vm.probList = vm.probListArray[vm.page];
@@ -109,9 +127,9 @@
 			vm.probList = vm.probListArray[vm.page];
 		}
 
-		vm.rePage = function(){
+		vm.rePage = function(data){
 			
-			vm.probListArray =  chunk(vm.data, parseInt(vm.select));
+			vm.probListArray =  chunk(data, parseInt(vm.select));
 			vm.page = 0;
 			vm.probList = vm.probListArray[vm.page];
 
@@ -131,6 +149,14 @@
 			vm.related = !vm.related;
 		}
 		
+		vm.readMore = function(){
+			vm.showTag = !vm.showTag;
+		}
+
+		vm.displayByTag = function(tagTitle){
+			// vm.data = vm.tagContent[tagTitle];
+			vm.rePage(vm.tagContent[tagTitle]);
+		}
 		$scope.$watch("vm.user.questions[vm.prob.title].note",function(newVal, oldVal){
 			if (newVal !== oldVal) {
 				// console.log(newVal);

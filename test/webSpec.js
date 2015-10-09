@@ -25,4 +25,16 @@ describe('web', function () {
 		})
 	})
 
+	it('should return json', function(done){
+		var user = {firstName: "Xinquan", lastName: "Zhou", email: "zhouxinquan@yahoo.com", password: "123456"};
+		supertest(app)
+		.post('/users/create')
+		.send(user)
+		.expect(200)
+		.end(function(err, res){
+			res.status.should.equal(200);
+			done();
+		})
+	})
+
 })

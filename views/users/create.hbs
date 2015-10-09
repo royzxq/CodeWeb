@@ -3,25 +3,64 @@
   <form name="create-user-form" id="create-user-form" method="post" nonvalidate>
     <div class="form-group">
       <label for="firstName">First name</label>
-      <input type="text" id="firstName" name="firstName" required value="{{input.firstName}}" />
+      <input type="text" id="firstName" name="firstName" placeholder="First Name" required value="{{input.firstName}}" />
     </div>
     <div class="form-group">
       <label for="lastName">Last name</label>
-      <input type="text" id="lastName" name="lastName" required value="{{input.lastName}}" />
+      <input type="text" id="lastName" name="lastName" placeholder="Last Name" required value="{{input.lastName}}" />
     </div>
     
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required value="{{input.email}}" />
+      <input type="email" id="email" name="email" placeholder="Email" required value="{{input.email}}" />
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" autocomplete="off" pattern=".{6,20}" required title="6 to 20 characters"> 
+      <input type="password" id="password" name="password" placeholder = "password" autocomplete="off" pattern=".{6,20}" required title="6 to 20 characters"> 
     </div>
+    
+    {{#if resend}}
     <div class="form-submit">
-      <input type="submit" value="Create my account" />
+      <input type="submit" name="type" value="resend"/>
     </div>
+    {{else}}
+    <div class="form-submit">
+      <input type="submit" name="type" value="register"/>
+    </div>
+    {{/if}}
+    <span style="color:blue">{{msg}}</span>
+    <span id="msg"></span>
     <span style="color:red">{{error}}</span>
   </form>
   <a href='/users/login'>Login</a>
 </div>
+
+<script type="text/javascript">
+  var register = function  () {
+    var email = $('#email').val(),
+      pw = $("#password").val(),
+      firstName = $('#firstName').val(),
+      lastName = $('#lastName').val();
+
+    $.ajax({
+      url: "/users/create",
+      type: "POST"
+      // data:{type: "register"}
+
+    }).then(function(data){
+      $('#msg').text(data.msg);
+    })
+
+  };
+
+  var resend = function(){
+    var email = $('#email').val();
+    $.ajax({
+      url: "/users/create",
+      type: "POST",
+      data:{email: email, type: "resend"}
+    }).then(function(data){
+      $("#msg").text(data.msg);
+    });
+  };
+</script>

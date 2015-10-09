@@ -3,7 +3,9 @@ var router = express.Router();
 var passport = require('passport');
 var userService = require('../service/user-service');
 var config = require("../config");
-
+var nev = require("../service/email-verification");
+var User = require('../models/user');
+var bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,30 +20,87 @@ router.get('/create', function(req, res, next){
 })
 
 router.post('/create', function(req, res, next){
-	userService.addUser(req.body, function(err){
-		if (err) {
-			// console.log(err);
-			var error = []
-			for(var x in err.errors){
-				error.push(err.errors[x].message);
-			}
-			// console.log(error);
-			var vm = {
-				title: "create an account",
-				error: error
-			};
-			// delete req.body.password;
-			return res.render('users/create',vm);
-		}
-		req.login(req.body,function(err){
-			if (err) {
-				res.redirect('users/create');
-			}
-			res.redirect('/');
-		});
-	});
+
+	// var email = req.body.email;
+	// console.log(req.body);
+	// console.log(req.body.email);
+	
+	if (req.body.type === "register") {
+		bcrypt.hash(req.body.password, 10, function(err, hash){
+			var newUser = new User({
+				email: req.body.email,
+				password: hash,
+				firstName: req.body.firstName,
+				lastName : req.body.lastName,
+				questions: {}
+			});
+			nev.createTempUser(newUser,function(newTempUser){
+				
+				if (newTempUser) {
+					// newTempUser.password = newTempUser.generateHash(newTempUser.password);
+					// console.log(newTempUser);
+					nev.registerTempUser(newTempUser);
+					console.log("An email has been sent to you. Please check it to verify your account.");
+					// res.json({msg:"An email has been sent to you. Please check it to verify your account."});
+					var tmp = {
+						msg:"An email has been sent to you. Please check it to verify your account.",
+						resend: true,
+						firstName: newTempUser.firstName,
+						lastName: newTempUser.lastName,
+						email: newTempUser.email
+					}
+					res.render('users/create',tmp);
+
+				}
+				else{
+					console.log('You have already signed up. Please check your email to verify your account.');
+					var tmp = {
+						msg:"An email has been sent to you. Please check it to verify your account.",
+						resend: true,
+						firstName: newTempUser.firstName,
+						lastName: newTempUser.lastName,
+						email: newTempUser.email
+					}
+					// res.render('/users/create',{msg:'You have already signed up. Please check your email to verify your account.'});
+					res.render('users/create',tmp);
+				}
+			})
+		})
+		
+	}
 	
 });
+
+router.get('/email-verification/:URL', function(req,res, next){
+	var url = req.params.URL;
+	nev.confirmTempUser(url, function(user){
+		if (user) {
+			userService.addUser(user, function(err){
+				if (err) {
+					// console.log(err);
+					var error = []
+					for(var x in err.errors){
+						error.push(err.errors[x].message);
+					}
+					// console.log(error);
+					var vm = {
+						title: "create an account",
+						error: error
+					};
+					// delete req.body.password;
+					return res.render('users/create',vm); 
+				}
+				req.login(user, function(err){
+					if (err) {
+						return res.redirect('/users/create');
+					}
+					res.redirect('/');
+				});
+			});
+		}
+
+	})
+})
 
 router.get('/login', function(req, res, next){
 	var vm = {

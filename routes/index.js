@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
     firstName: req.user ? req.user.firstName : null,
     error : req.flash('error')
   }
+  
   res.render('index', vm);
 
 });

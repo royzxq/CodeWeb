@@ -10,14 +10,16 @@ var expressSession = require("express-session");
 var connectMongo = require('connect-mongo');
 var MongoStore = connectMongo(expressSession);
 
+var config = require("./config");
+mongoose.connect(config.mongoUri);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var graph = require('./routes/graph');
-var config = require("./config");
 var passportConfig = require('./auth/passport-config');
 
-mongoose.connect(config.mongoUri);
+
+
 var app = express();
 passportConfig();
 

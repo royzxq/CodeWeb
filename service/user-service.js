@@ -1,14 +1,10 @@
-var bcrypt = require('bcrypt');
+// var bcrypt = require('bcrypt');
 var User = require('../models/user');
 var Prob = require("../models/prob").Prob;
 
-
 exports.addUser = function  (user, next) {
-	bcrypt.hash(user.password,10, function(err,hash){
-		if (err) {
-			return next(err);
-		}
-		user.password = hash;
+	// bcrypt.hash(user.password,10, function(err,hash){
+		
 		var newUser = new User({
 			firstName: user.firstName,
 			lastName: user.lastName,
@@ -16,6 +12,8 @@ exports.addUser = function  (user, next) {
 			password: user.password,
 			questions: {}
 		});
+
+		
 		Prob.find({}, function(err, probs){
 			if (err) {
 				return next(err);
@@ -32,7 +30,7 @@ exports.addUser = function  (user, next) {
 			});
 		});
 		
-	});
+	// });
 };
 
 exports.findUser = function(email, next){

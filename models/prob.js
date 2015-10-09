@@ -10,6 +10,4 @@ var probSchema = new Schema({
 }, { collection : 'question_collection' });
 
 var Prob = mongoose.model("Prob", probSchema);
-module.exports = {
-    Prob : Prob
-};
+module.exports = Prob;

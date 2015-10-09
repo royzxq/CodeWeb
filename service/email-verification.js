@@ -1,5 +1,5 @@
-var nev = require('email-verification');
 
+var nev = require('./index');
 var User = require('../models/user');
 var TempUser = require('../models/temp_user');
 var config = require('../config');

@@ -1,4 +1,4 @@
-var Prob = require("../models/prob").Prob;
+var Prob = require("../models/prob");
 
 exports.getProbs = function(next){
     Prob.find({}, function(err,probs){

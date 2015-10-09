@@ -1,6 +1,6 @@
 // var bcrypt = require('bcrypt');
 var User = require('../models/user');
-var Prob = require("../models/prob").Prob;
+var Prob = require("../models/prob");
 
 exports.addUser = function  (user, next) {
 	// bcrypt.hash(user.password,10, function(err,hash){

@@ -52,10 +52,9 @@ router.post('/create', function(req, res, next){
 						var tmp = {
 							msg:"An email has been sent to you. Please check it to verify your account.",
 							resend: true,
-							firstName: newTempUser.firstName,
-							lastName: newTempUser.lastName,
-							email: newTempUser.email
-						}
+							firstName: null
+							
+						};
 						res.render('users/create',tmp);
 
 					}
@@ -64,10 +63,9 @@ router.post('/create', function(req, res, next){
 						var tmp = {
 							msg:"An email has been sent to you. Please check it to verify your account.",
 							resend: true,
-							firstName: newTempUser.firstName,
-							lastName: newTempUser.lastName,
-							email: newTempUser.email
-						}
+							firstName: null
+							
+						};
 						// res.render('/users/create',{msg:'You have already signed up. Please check your email to verify your account.'});
 						res.render('users/create',tmp);
 					}

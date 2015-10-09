@@ -1,4 +1,4 @@
-
+<a href="/">Back To Main Page</a>
 <div class="widget">
   <form name="create-user-form" id="create-user-form" method="post" nonvalidate>
     <div class="form-group">
@@ -35,32 +35,3 @@
   <a href='/users/login'>Login</a>
 </div>
 
-<script type="text/javascript">
-  var register = function  () {
-    var email = $('#email').val(),
-      pw = $("#password").val(),
-      firstName = $('#firstName').val(),
-      lastName = $('#lastName').val();
-
-    $.ajax({
-      url: "/users/create",
-      type: "POST"
-      // data:{type: "register"}
-
-    }).then(function(data){
-      $('#msg').text(data.msg);
-    })
-
-  };
-
-  var resend = function(){
-    var email = $('#email').val();
-    $.ajax({
-      url: "/users/create",
-      type: "POST",
-      data:{email: email, type: "resend"}
-    }).then(function(data){
-      $("#msg").text(data.msg);
-    });
-  };
-</script>

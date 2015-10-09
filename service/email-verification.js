@@ -5,11 +5,9 @@ var TempUser = require('../models/temp_user');
 var config = require('../config');
 var url;
 if (process.env.NODE_ENV === 'production') {
-    console.log("this is production");
     url = "https://morning-basin-5736.herokuapp.com/users/email-verification/${URL}";
 }
 else{
-  console.log("this is not production");
   url = "http://localhost:3000/users/email-verification/${URL}";
 }
 var from = "Do Not Reply <" + config.emailUser + ">";

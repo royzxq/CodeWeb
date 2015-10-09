@@ -26,46 +26,55 @@ router.post('/create', function(req, res, next){
 	// console.log(req.body.email);
 	
 	if (req.body.type === "register") {
-		bcrypt.hash(req.body.password, 10, function(err, hash){
-			var newUser = new User({
-				email: req.body.email,
-				password: hash,
-				firstName: req.body.firstName,
-				lastName : req.body.lastName,
-				questions: {}
-			});
-			nev.createTempUser(newUser,function(newTempUser){
-				
-				if (newTempUser) {
-					// newTempUser.password = newTempUser.generateHash(newTempUser.password);
-					// console.log(newTempUser);
-					nev.registerTempUser(newTempUser);
-					console.log("An email has been sent to you. Please check it to verify your account.");
-					// res.json({msg:"An email has been sent to you. Please check it to verify your account."});
-					var tmp = {
-						msg:"An email has been sent to you. Please check it to verify your account.",
-						resend: true,
-						firstName: newTempUser.firstName,
-						lastName: newTempUser.lastName,
-						email: newTempUser.email
-					}
-					res.render('users/create',tmp);
+		userService.findUser(req.body.email, function(err, user){
+			if (err) {
+				res.status(500).json({status:"failure"});
+			}
+			if (user) {
+				return res.render('users/create',{error: "email already in use, please change another one"});
+			}
+			bcrypt.hash(req.body.password, 10, function(err, hash){
+				var newUser = new User({
+					email: req.body.email,
+					password: hash,
+					firstName: req.body.firstName,
+					lastName : req.body.lastName,
+					questions: {}
+				});
+				nev.createTempUser(newUser,function(newTempUser){
+					
+					if (newTempUser) {
+						// newTempUser.password = newTempUser.generateHash(newTempUser.password);
+						// console.log(newTempUser);
+						nev.registerTempUser(newTempUser);
+						console.log("An email has been sent to you. Please check it to verify your account.");
+						// res.json({msg:"An email has been sent to you. Please check it to verify your account."});
+						var tmp = {
+							msg:"An email has been sent to you. Please check it to verify your account.",
+							resend: true,
+							firstName: newTempUser.firstName,
+							lastName: newTempUser.lastName,
+							email: newTempUser.email
+						}
+						res.render('users/create',tmp);
 
-				}
-				else{
-					console.log('You have already signed up. Please check your email to verify your account.');
-					var tmp = {
-						msg:"An email has been sent to you. Please check it to verify your account.",
-						resend: true,
-						firstName: newTempUser.firstName,
-						lastName: newTempUser.lastName,
-						email: newTempUser.email
 					}
-					// res.render('/users/create',{msg:'You have already signed up. Please check your email to verify your account.'});
-					res.render('users/create',tmp);
-				}
-			})
-		})
+					else{
+						console.log('You have already signed up. Please check your email to verify your account.');
+						var tmp = {
+							msg:"An email has been sent to you. Please check it to verify your account.",
+							resend: true,
+							firstName: newTempUser.firstName,
+							lastName: newTempUser.lastName,
+							email: newTempUser.email
+						}
+						// res.render('/users/create',{msg:'You have already signed up. Please check your email to verify your account.'});
+						res.render('users/create',tmp);
+					}
+				})
+			});
+		}) 
+		
 		
 	}
 	

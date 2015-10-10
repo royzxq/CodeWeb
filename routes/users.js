@@ -13,17 +13,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next){
+	// console.log(req.session);
 	var vm = {
-		title: "Create an account"
+		title: "Create an account",
+		first_name: req.session.flash ? req.session.flash.firstName:null,
+		lastName: req.session.flash ? req.session.flash.lastName:null,
+		email: req.session.flash ? req.session.flash.email:null,
+		resend: req.session.flash ? req.session.flash.resend: false,
+		msg: req.session.flash ? req.session.flash.msg: null
 	};
+	// delete req.session.flash;
+	req.session.flash = {};
+	// console.log(req.session.flash);
 	res.render('users/create',vm);
 })
 
 router.post('/create', function(req, res, next){
-
-	// var email = req.body.email;
-	// console.log(req.body);
-	// console.log(req.body.email);
 	
 	if (req.body.type === "register") {
 		userService.findUser(req.body.email, function(err, user){
@@ -52,28 +57,50 @@ router.post('/create', function(req, res, next){
 						var tmp = {
 							msg:"An email has been sent to you. Please check it to verify your account.",
 							resend: true,
-							firstName: null
-							
+							firstName: req.body.firstName,
+							lastName: req.body.lastName,
+							email: req.body.email
 						};
-						res.render('users/create',tmp);
+						req.session.flash = tmp;
+						// res.render('users/create',tmp);
+						res.redirect('/users/create');
 
 					}
 					else{
 						console.log('You have already signed up. Please check your email to verify your account.');
 						var tmp = {
-							msg:"An email has been sent to you. Please check it to verify your account.",
+							msg:"You have already signed up. Please check your email to verify your account.",
 							resend: true,
-							firstName: null
-							
+							firstName: req.body.firstName,
+							email: req.body.email,
+							lastName: req.body.lastName
 						};
 						// res.render('/users/create',{msg:'You have already signed up. Please check your email to verify your account.'});
-						res.render('users/create',tmp);
+						req.session.flash = tmp;
+						res.redirect('/users/create');
 					}
 				})
 			});
 		}) 
 		
 		
+	}
+	else{
+		nev.resendVerificationEmail(req.body.email, function(userFound) {
+			var tmp = {
+				resend: true,
+				firstName: req.body.firstName,
+				email: req.body.email,
+				lastName: req.body.lastName
+			};
+            if (userFound) {
+                tmp.msg = 'An email has been sent to you, yet again. Please check it to verify your account.';
+            } else {
+                tmp.msg = 'Your verification code has expired. Please sign up again.';
+            }
+            req.session.flash = tmp;
+            res.redirect('/users/create');
+        });
 	}
 	
 });

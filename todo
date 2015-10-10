@@ -1,1 +1,2 @@
-move email verification out of the node module
+sorting difficulty; 
+try: change render into redirect in post

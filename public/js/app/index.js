@@ -107,8 +107,14 @@
 		};
 		
 		vm.order = function(predicate){
-			vm.reverse = (vm.predicate === predicate) ? !vm.reverse : false;
-			vm.predicate = predicate;
+			if (predicate === 'difficulty') {
+				vm.reverse = (vm.predicate === vm.sortDifficulty ? !vm.reverse: false);
+				vm.predicate = vm.sortDifficulty;
+			}
+			else{
+				vm.reverse = (vm.predicate === predicate) ? !vm.reverse : false;
+				vm.predicate = predicate;
+			}
 		}
 
 		vm.goNextPage = function(){
@@ -156,6 +162,18 @@
 		vm.displayByTag = function(tagTitle){
 			// vm.data = vm.tagContent[tagTitle];
 			vm.rePage(vm.tagContent[tagTitle]);
+		}
+
+		vm.sortDifficulty = function(prob){
+			if (prob.difficulty === 'Easy') {
+				return 1;
+			}
+			else if(prob.difficulty === 'Medium'){
+				return 2;
+			}
+			else{
+				return 3;
+			}
 		}
 		$scope.$watch("vm.user.questions[vm.prob.title].note",function(newVal, oldVal){
 			if (newVal !== oldVal) {

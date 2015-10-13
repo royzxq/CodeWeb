@@ -4,6 +4,8 @@ jQuery(document).ready(function($) {
 	$.supersized({
         slides : [ {image : '/images/black_dark_shadow_9663_2560x1600.jpg'  } ]
     });
+
+    
 	// var layout ;
 	// jQuery('#layout').selectmenu({
 	// 	select : function(event, data){

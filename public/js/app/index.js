@@ -111,6 +111,10 @@
 				vm.reverse = (vm.predicate === vm.sortDifficulty ? !vm.reverse: false);
 				vm.predicate = vm.sortDifficulty;
 			}
+			// else if (predicate === 'finish'){
+			// 	vm.reverse = (vm.predicate === vm.sortDifficulty ? !vm.reverse: false);
+			// 	vm.predicate = vm.sortDifficulty;
+			// }
 			else{
 				vm.reverse = (vm.predicate === predicate) ? !vm.reverse : false;
 				vm.predicate = predicate;
@@ -175,6 +179,7 @@
 				return 3;
 			}
 		}
+
 		$scope.$watch("vm.user.questions[vm.prob.title].note",function(newVal, oldVal){
 			if (newVal !== oldVal) {
 				// console.log(newVal);

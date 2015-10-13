@@ -155,7 +155,7 @@
 		// $('#sidebar').css("width", "auto");
 		jQuery.ajax({
 			type: "GET",
-			url : "/probs/" + node.label
+			url : "/probs/" + label
 		}).then(function(prob){
 				$('#description').append("<br><a href='"+ prob.link + "'> Link </a>");
 				// 

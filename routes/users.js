@@ -67,16 +67,6 @@ router.post('/create', function(req, res, next){
 
 					}
 					else{
-						console.log('You have already signed up. Please check your email to verify your account.');
-						var tmp = {
-							msg:"You have already signed up. Please check your email to verify your account.",
-							resend: true,
-							firstName: req.body.firstName,
-							email: req.body.email,
-							lastName: req.body.lastName
-						};
-						// res.render('/users/create',{msg:'You have already signed up. Please check your email to verify your account.'});
-						req.session.flash = tmp;
 						res.redirect('/users/create');
 					}
 				})

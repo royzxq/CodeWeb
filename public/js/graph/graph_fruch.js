@@ -96,7 +96,7 @@
 			.attr("dx", 0)
 			.attr('dy','0.2em')
 			.style('text-anchor','middle')
-			.style('font-size', 12)
+			.style('font-size', 20)
 			.style('font-weight','bold')
 			.text(function(d){
 				if (d.size > 18) {

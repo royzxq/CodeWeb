@@ -22,9 +22,9 @@
 	<span><b>To have more functionality, please create a new account or login!</b></span>
 	</p>
 	<div style="float: left; width: 70%;" ng-show=" vm.probList">
-	<a href="/graph/graph/force"><strong style="font-size: 20px;">Graph Visualization of Questions</strong></a>
+	<a href="/graph/graph/force"><strong style="font-size: 24px;">Graph Visualization of Questions</strong></a>
 	
-	<table >
+	<table style="font-size: 17px;">
 		<tr ng-show="vm.probList">
 			
 			<td >
@@ -41,7 +41,7 @@
 			</td>
 
 			<td ng-show="vm.user">
-				Finished
+				<a href="" ng-click="vm.order('finish')">Finsihed</a>
 			</td>
 			
 		</tr>
@@ -76,7 +76,7 @@
 	</div>
 	<div style="float: right; width: 30%;">
 		<div style="margin:0px auto; width: 60%;">
-			<table >
+			<table style="font-size:15px;">
 				<tr>
 					<td>Tag</td>
 					<td>Frequency</td>

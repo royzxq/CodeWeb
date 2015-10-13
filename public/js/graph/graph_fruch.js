@@ -1,5 +1,7 @@
 
 (function() {
+	'use strict';
+	
 	var width = window.innerWidth,
 		height = window.innerHeight;
 

@@ -1,7 +1,6 @@
 var express = require('express');
-// var request = require("request");
-var probService = require("../service/prob-service");
 
+var probService = require("../service/prob-service");
 var router = express.Router();
 
 /* GET home page. */

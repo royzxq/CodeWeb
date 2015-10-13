@@ -1,4 +1,5 @@
 (function(){
+	'use strict';
 
 	var width = window.innerWidth,
 	        height = window.innerHeight;
@@ -18,7 +19,7 @@
 				.attr('width',width)
 				.attr('height',height)
 				.call(tip);
-	var nodeMap = {};
+	var nodeMap = {},
 		initSize = [];
 	d3.json('/js/Force.json', function(err, graph){
 		if (err) {
@@ -90,7 +91,4 @@
 			});
 		});	
 	};
-
-	
-
 }());

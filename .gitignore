@@ -2,5 +2,5 @@ node_modules/
 /data
 mongod-start
 *.log
-*~
+/**~
 #/config.*

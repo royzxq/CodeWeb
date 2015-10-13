@@ -19,11 +19,9 @@ router.get('/graph/:layout', function (req, res, next) {
 	else{
 		res.render('index',{
 			firstName: req.user ? req.user.firstName : null,
-
 		});
 	}	
 });
-
 
 router.get('/force', function(req, res, next){
 	res.render('graph/force',{

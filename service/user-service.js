@@ -12,7 +12,6 @@ exports.addUser = function  (user, next) {
 			password: user.password,
 			questions: {}
 		});
-
 		
 		Prob.find({}, function(err, probs){
 			if (err) {
@@ -30,7 +29,6 @@ exports.addUser = function  (user, next) {
 			});
 		});
 		
-	// });
 };
 
 exports.findUser = function(email, next){
@@ -40,10 +38,7 @@ exports.findUser = function(email, next){
 };
 
 exports.updateQuestions = function(id, prob, next){
-	// console.log(id);
-	// console.log(title);
 	User.update({_id: id}, {$set: { questions: prob}}, function(err, user){
-		// console.log(user);
 		if (err) {
 			return next(err);
 		}

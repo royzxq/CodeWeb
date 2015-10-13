@@ -5,9 +5,6 @@ exports.getProbs = function(next){
         if (err) {
           return next(err);
         }
-        // for(var i in probs){
-        //     console.log(i);
-        // }
         next(null,probs);
     });
 }

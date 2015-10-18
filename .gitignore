@@ -3,5 +3,5 @@ node_modules/
 mongod-start
 *.log
 /**~
-/config.*
+#/config.*
 *.pem

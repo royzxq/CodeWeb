@@ -3,6 +3,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var jpegtran = require('imagemin-jpegtran');
+var minifyCSS = require('gulp-minify-css');
+var rename = require('gulp-rename');
 
 gulp.task('default', function() {
 	gulp.src([
@@ -43,5 +45,26 @@ gulp.task('default', function() {
 		use: [jpegtran()]
 	}))
 	.pipe(gulp.dest('public/js/build'));
+
+	gulp.src([
+		'public/stylesheets/wp-backgrounds.css',
+		'public/stylesheets/style.css',
+		'public/bower/angular-xeditable/dist/css/xeditable.css'
+		])
+	.pipe(concat('layout.min.css'))
+	.pipe(minifyCSS())
+	.pipe(gulp.dest('public/stylesheets'));
+
+	gulp.src([
+		'public/stylesheets/wp-backgrounds.css',
+		'public/stylesheets/style.css',
+		'public/stylesheets/graph.css',
+		'public/stylesheets/mjCont.css'
+		])
+	.pipe(concat('graph_layout.min.css'))
+	.pipe(minifyCSS())
+	.pipe(gulp.dest('public/stylesheets'));
+
+
 
 });

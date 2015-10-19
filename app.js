@@ -8,6 +8,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var expressSession = require("express-session");
 var connectMongo = require('connect-mongo');
+var compression = require('compression')
+
 var MongoStore = connectMongo(expressSession);
 
 var config = require("./config");
@@ -29,7 +31,7 @@ app.set('production', process.env.NODE_ENV === 'production');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-
+app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

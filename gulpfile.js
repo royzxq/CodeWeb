@@ -49,7 +49,6 @@ gulp.task('default', function() {
 	gulp.src([
 		'public/stylesheets/wp-backgrounds.css',
 		'public/stylesheets/style.css',
-		'public/bower/angular-xeditable/dist/css/xeditable.css'
 		])
 	.pipe(concat('layout.min.css'))
 	.pipe(minifyCSS())

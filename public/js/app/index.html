@@ -19,29 +19,29 @@
 	</span>
 	
 	<p ng-show="!vm.user && vm.probList">
-	<span><b>To have more functionality, please create a new account or login!</b></span>
+	<span><b style="color: blue; font-size:17px;">To have more functionality, please create a new account or login!</b></span>
 	</p>
 	<div style="float: left; width: 70%;" ng-show=" vm.probList">
-	<a href="/graph/graph/force"><strong style="font-size: 24px;">Graph Visualization of Questions</strong></a>
+	<a href="/graph/graph/force"><strong style="font-size: 24px; color: red;">Graph Visualization of Questions</strong></a>
 	
 	<table style="font-size: 17px;">
 		<tr ng-show="vm.probList">
 			
 			<td >
-				<a href="" ng-click="vm.order('title')">Title</a>
+				<a href="" ng-click="vm.order('title')"><strong>Title</strong> </a>
 			</td>
 			<td >
-				<a href="" ng-click="vm.order('difficulty')">Difficulty</a>
+				<a href="" ng-click="vm.order('difficulty')"><strong>Difficulty</strong> </a>
 			</td>
 			<!-- <td >
 				<a href="" ng-click="vm.order('link')">Link</a>
 			</td> -->
 			<td >
-				<a href="" ng-click="vm.order('source')">Source</a>
+				<a href="" ng-click="vm.order('source')"><strong>Source</strong> </a>
 			</td>
 
 			<td ng-show="vm.user">
-				<a href="" ng-click="vm.order('finish')">Finsihed</a>
+				<a href="" ng-click="vm.order('finish')"><strong>Finsihed</strong> </a>
 			</td>
 			
 		</tr>

@@ -16,15 +16,15 @@ router.get('/create', function(req, res, next){
 	// console.log(req.session);
 	var vm = {
 		title: "Create an account",
-		first_name: req.session.flash ? req.session.flash.firstName:null,
-		lastName: req.session.flash ? req.session.flash.lastName:null,
-		email: req.session.flash ? req.session.flash.email:null,
-		resend: req.session.flash ? req.session.flash.resend: false,
-		msg: req.session.flash ? req.session.flash.msg: null
+		first_name: req.session.flash.msg ? req.session.flash.msg.firstName:null,
+		lastName: req.session.flash.msg ? req.session.flash.msg.lastName:null,
+		email: req.session.flash.msg ? req.session.flash.msg.email:null,
+		resend: req.session.flash.msg ? req.session.flash.msg.resend: false,
+		msg: req.session.flash.msg ? req.session.flash.msg.msg: null
 	};
-	// delete req.session.flash;
-	req.session.flash = {};
-	// console.log(req.session.flash);
+	// delete req.session.flash.msg;
+	req.session.flash.msg = {};
+	// console.log(req.session.flash.msg);
 	res.render('users/create',vm);
 })
 
@@ -61,7 +61,7 @@ router.post('/create', function(req, res, next){
 							lastName: req.body.lastName,
 							email: req.body.email
 						};
-						req.session.flash = tmp;
+						req.session.flash.msg = tmp;
 						// res.render('users/create',tmp);
 						res.redirect('/users/create');
 
@@ -88,7 +88,7 @@ router.post('/create', function(req, res, next){
             } else {
                 tmp.msg = 'Your verification code has expired. Please sign up again.';
             }
-            req.session.flash = tmp;
+            req.session.flash.msg = tmp;
             res.redirect('/users/create');
         });
 	}
@@ -148,7 +148,8 @@ router.post('/login', function(req, res, next){
 
 router.get('/logout', function(req, res, next){
 	req.logout();
-	req.session.destroy();
+	// req.session.destroy();
+	// console.log(req.session);
 	res.render('index', {firstName: null});
 })
 

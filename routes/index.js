@@ -17,11 +17,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/probs', function(req, res, next) {
+    
+    if (req.session.flash.probs) {
+      // console.log("cached");
+      return res.json(req.session.flash.probs);
+
+    }
     probService.getProbs(function(err, probs){
       if (err) {
         return res.status(500).json({error:"Failed"});
       }
       // console.log(probs);
+      req.session.flash.probs = probs;
       res.json(probs);
     })
 })

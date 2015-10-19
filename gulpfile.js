@@ -48,7 +48,7 @@ gulp.task('default', function() {
 
 	gulp.src([
 		'public/stylesheets/wp-backgrounds.css',
-		'public/stylesheets/style.css',
+		'public/stylesheets/style.css'
 		])
 	.pipe(concat('layout.min.css'))
 	.pipe(minifyCSS())

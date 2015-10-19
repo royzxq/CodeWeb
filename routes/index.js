@@ -17,6 +17,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/probs', function(req, res, next) {
+    res.setHeader("Cache-Control", "public, max-age=25920");
+    res.setHeader("Expires", new Date(Date.now() + 25920000).toUTCString());
     
     if (req.session.flash.probs) {
       // console.log("cached");

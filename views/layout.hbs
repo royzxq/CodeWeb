@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            body{
+                background: url(/js/build/table-setting_485913447.jpg) no-repeat;
+                background-size: 100%;
+            }
+        </style>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>OJ Integrating Website {{#if title}} - {{title}}{{/if}}</title>
@@ -15,6 +21,8 @@
         <link href="/bower/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
     </head>
     <body class="custom-font-enabled">
+        
+
         <div id="page" class="hfeed site">
             {{#if firstName}}
             <div id="greeting" style="float:right">
@@ -47,8 +55,8 @@
             </div>
 	        
         </div> 
-        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
-        <script type='text/javascript' src="/js/wp-backgrounds.js"></script>
-        <script type='text/javascript' src="/js/main.js"></script>       
+        <script async  type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+        {{!--<script  type='text/javascript' src="/js/wp-backgrounds.js"></script>--}}
+        {{!--<script async type='text/javascript' src="/js/main.js"></script>   --}}
     </body>
 </html>

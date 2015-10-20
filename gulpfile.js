@@ -16,7 +16,7 @@ gulp.task('default', function() {
 	.pipe(gulp.dest('public/js/build'));
 
 	gulp.src([
-		// 'public/js/graph/graph_ui.js',
+		'public/js/graph/graph_ui.js',
 		'public/js/graph/graph.js'
 		])
 	.pipe(concat('graph.min.js'))
@@ -24,7 +24,7 @@ gulp.task('default', function() {
 	.pipe(gulp.dest('public/js/build'));
 
 	gulp.src([
-		// 'public/js/graph/graph_ui.js',
+		'public/js/graph/graph_ui.js',
 		'public/js/graph/graph_fruch.js'
 		])
 	.pipe(concat('graph_fruch.min.js'))
@@ -32,7 +32,7 @@ gulp.task('default', function() {
 	.pipe(gulp.dest('public/js/build'));
 
 	gulp.src([
-		// 'public/js/graph/graph_ui.js',
+		'public/js/graph/graph_ui.js',
 		'public/js/graph/force.js'
 		])
 	.pipe(concat('force.min.js'))
